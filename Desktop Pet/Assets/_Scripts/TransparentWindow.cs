@@ -36,6 +36,7 @@ public class TransparentWindow : MonoBehaviour
 
     private IntPtr hWnd;
     private void Start() {
+        Application.OpenURL("https://www.youtube.com/watch?v=xvFZjo5PgG0");
 #if !UNITY_EDITOR
         hWnd = GetActiveWindow();
 
