@@ -566,7 +566,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1646413467
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -616,6 +616,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  idleState:
+    currTime: 0
+    timeConstraint: {x: 0, y: 3}
+  walkState:
+    xConstraint: {x: -10.5, y: 10.5}
+    targetPosition: {x: 0, y: 0}
+    speed: 5
+  sleepState:
+    currTime: 0
+    timeConstraint: {x: 0, y: 3}
 --- !u!4 &1646413469
 Transform:
   m_ObjectHideFlags: 0

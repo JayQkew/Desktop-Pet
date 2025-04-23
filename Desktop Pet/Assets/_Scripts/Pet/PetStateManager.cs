@@ -36,7 +36,7 @@ public class PetStateManager : MonoBehaviour
 #endif
     }
 
-    private void SwitchState(PetState newState) {
+    public void SwitchState(PetState newState) {
         state = newState;
         _currState.ExitState(this);
         switch (newState) {
