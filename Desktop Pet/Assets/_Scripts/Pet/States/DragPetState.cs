@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class DragPetState : PetBaseState
 {
     public override void EnterState(PetStateManager manager) {

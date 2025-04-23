@@ -1,47 +1,57 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PetStateManager : MonoBehaviour
 {
     public PetState state;
 
-    public PetBaseState currState;
+    private PetBaseState _currState;
     
-    public IdlePetState IdleState = new IdlePetState();
-    public WalkPetState WalkState = new WalkPetState();
-    public SleepPetState SleepState = new SleepPetState();
-    public DragPetState DragState = new DragPetState();
-    public PetPetState PetState = new PetPetState();
-    public WorkPetState WorkState = new WorkPetState();
-    public EatPetState EatState = new EatPetState();
-    public PlantPetState PlantState = new PlantPetState();
+    [SerializeField] IdlePetState idleState = new IdlePetState();
+    [SerializeField] WalkPetState walkState = new WalkPetState();
+    [SerializeField] SleepPetState sleepState = new SleepPetState();
+    [SerializeField] DragPetState dragState = new DragPetState();
+    [SerializeField] PetPetState petState = new PetPetState();
+    [SerializeField] WorkPetState workState = new WorkPetState();
+    [SerializeField] EatPetState eatState = new EatPetState();
+    [SerializeField] PlantPetState plantState = new PlantPetState();
 
     private void Start() {
-        
+        _currState = idleState;
     }
 
     private void Update() {
-        currState.UpdateState(this);
+        _currState.UpdateState(this);
     }
 
     private void SwitchState(PetState newState) {
         state = newState;
+        _currState.ExitState(this);
         switch (newState) {
-            case global::PetState.Idle:
+            case PetState.Idle:
+                _currState = idleState;
                 break;
-            case global::PetState.Walk:
+            case PetState.Walk:
+                _currState = walkState;
                 break;
-            case global::PetState.Sleep:
+            case PetState.Sleep:
+                _currState = sleepState;
                 break;
-            case global::PetState.Drag:
+            case PetState.Drag:
+                _currState = dragState;
                 break;
-            case global::PetState.Pet:
+            case PetState.Pet:
+                _currState = petState;
                 break;
-            case global::PetState.Work:
+            case PetState.Work:
+                _currState = workState;
                 break;
-            case global::PetState.Eat:
+            case PetState.Eat:
+                _currState = eatState;
                 break;
-            case global::PetState.Plant:
+            case PetState.Plant:
+                _currState = plantState;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

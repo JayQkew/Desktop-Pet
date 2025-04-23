@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 
-public class WorkPetState : PetBaseState
+[Serializable]
+public class PetPetState : PetBaseState
 {
     public override void EnterState(PetStateManager manager) {
-        Debug.Log("Pet started working.");
+        Debug.Log("Pet is being petted. Purrrr...");
     }
 
     public override void UpdateState(PetStateManager manager) {
     }
 
     public override void ExitState(PetStateManager manager) {
-        Debug.Log("Pet finished working and earned a treat!");
+        Debug.Log("Petting session ended.");
     }
 }
