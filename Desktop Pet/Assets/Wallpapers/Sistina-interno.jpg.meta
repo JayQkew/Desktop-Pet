@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sistina-interno_0: -341256570410010049
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
