@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class WalkPetState : PetBaseState
 {
+    [SerializeField] private Color color = Color.white;
     [SerializeField] private Vector2 xConstraint;
     [SerializeField] private Vector2 targetPosition;
     [SerializeField] private float speed;
@@ -12,6 +13,7 @@ public class WalkPetState : PetBaseState
         Debug.Log("Pet started walking.");
         //generate a random target position
         targetPosition = new Vector2(Random.Range(xConstraint.x, xConstraint.y), manager.transform.position.y);
+        manager.GetComponentInChildren<SpriteRenderer>().color = color;
     }
 
     public override void UpdateState(PetStateManager manager) {

@@ -5,11 +5,13 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class SleepPetState : PetBaseState
 {
+    [SerializeField] private Color color = Color.white;
     [SerializeField] private float currTime;
     [SerializeField] private Vector2 timeConstraint;
     public override void EnterState(PetStateManager manager) {
         Debug.Log("Pet started sleeping. Zzz...");
         currTime = Random.Range(timeConstraint.x, timeConstraint.y);
+        manager.GetComponentInChildren<SpriteRenderer>().color = color;
     }
 
     public override void UpdateState(PetStateManager manager) {
