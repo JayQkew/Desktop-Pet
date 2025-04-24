@@ -16,6 +16,7 @@ public class PetStateManager : MonoBehaviour
     [SerializeField] WorkPetState workState = new WorkPetState();
     [SerializeField] EatPetState eatState = new EatPetState();
     [SerializeField] PlantPetState plantState = new PlantPetState();
+    [SerializeField] FallPetState fallState = new FallPetState();
 
     private void Start() {
         _currState = idleState;
@@ -64,6 +65,9 @@ public class PetStateManager : MonoBehaviour
             case PetState.Plant:
                 _currState = plantState;
                 break;
+            case PetState.Fall:
+                _currState = fallState;
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -80,7 +84,8 @@ public enum PetState
     Pet,
     Work,
     Eat,
-    Plant
+    Plant,
+    Fall
 }
 
 public abstract class PetBaseState

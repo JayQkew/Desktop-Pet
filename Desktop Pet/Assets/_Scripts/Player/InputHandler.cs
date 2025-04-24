@@ -10,13 +10,13 @@ public class InputHandler : MonoBehaviour
     public bool leftClick;
     public bool rightClick;
     
-    public UnityEvent onLeftDown;
-    public UnityEvent onLeftHold;
-    public UnityEvent onLeftUp;
+    [HideInInspector] public UnityEvent onLeftDown;
+    [HideInInspector] public UnityEvent onLeftHold;
+    [HideInInspector] public UnityEvent onLeftUp;
     
-    public UnityEvent onRightDown;
-    public UnityEvent onRightHold;
-    public UnityEvent onRightUp;
+    [HideInInspector] public UnityEvent onRightDown;
+    [HideInInspector] public UnityEvent onRightHold;
+    [HideInInspector] public UnityEvent onRightUp;
 
     private void Update() {
         if (leftClick) onLeftHold?.Invoke();

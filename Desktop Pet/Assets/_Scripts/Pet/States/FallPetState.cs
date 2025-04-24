@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class DragPetState : PetBaseState
+public class FallPetState : PetBaseState
 {
     [SerializeField] private Color color = Color.white;
+
     public override void EnterState(PetStateManager manager) {
         manager.GetComponentInChildren<SpriteRenderer>().color = color;
     }

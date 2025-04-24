@@ -19,7 +19,7 @@ public class WalkPetState : PetBaseState
         float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, speed * Time.deltaTime);
         manager.transform.position = new Vector3(xPos, manager.transform.position.y, manager.transform.position.z);
 
-        if (manager.transform.position.x == targetPosition.x) {
+        if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
             manager.SwitchState(PetState.Idle);
         }
     }
