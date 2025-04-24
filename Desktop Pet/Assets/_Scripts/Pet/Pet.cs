@@ -19,7 +19,8 @@ public class Pet : MonoBehaviour, IInteractable
         Debug.Log("Pet dropped");
     }
 
-    public void OnHeld() {
+    public void OnHeld(Vector2 offset) {
+        transform.position = offset;
         Debug.Log("Pet held");
     }
 }

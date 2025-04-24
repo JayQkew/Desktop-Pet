@@ -10,6 +10,7 @@ public class DragPetState : PetBaseState
     }
 
     public override void UpdateState(PetStateManager manager) {
+        manager.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
 
     public override void ExitState(PetStateManager manager) {

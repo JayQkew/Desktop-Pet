@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
     [SerializeField] private LayerMask interactableLayer;
+    private Vector2 offset;
 
     private void Awake() {
         _inputHandler = GetComponent<InputHandler>();
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         if (hit != null) {
             heldObject = hit.gameObject;
             _interactable = hit.GetComponent<IInteractable>();
+            offset = (Vector2)heldObject.transform.position - _inputHandler.mousePos;
             
             _interactable.OnPickup();
         }
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour
 
     private void Hold() {
         if (_interactable != null) {
-            _interactable.OnHeld();
+            _interactable.OnHeld(offset + _inputHandler.mousePos);
         }
     }
 
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
             _interactable.OnDrop();
 
             heldObject = null;
+            _interactable = null;
         }
     }
 }

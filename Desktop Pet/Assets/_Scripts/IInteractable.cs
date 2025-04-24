@@ -4,5 +4,5 @@ public interface IInteractable
 {
     void OnPickup();
     void OnDrop();
-    void OnHeld();
+    void OnHeld(Vector2 offset);
 }

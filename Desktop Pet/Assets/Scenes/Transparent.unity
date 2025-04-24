@@ -493,7 +493,7 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &737046115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1130831768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1554,6 +1554,11 @@ MonoBehaviour:
     color: {r: 1, g: 0.4760973, b: 0, a: 1}
   plantState:
     color: {r: 0.5683641, g: 1, b: 0.27735847, a: 1}
+  fallState:
+    color: {r: 1, g: 0.046428576, b: 0.013207495, a: 1}
+    floorMask:
+      serializedVersion: 2
+      m_Bits: 8
 --- !u!4 &1646413469
 Transform:
   m_ObjectHideFlags: 0
