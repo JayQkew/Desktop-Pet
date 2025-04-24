@@ -9,7 +9,6 @@ public class SleepPetState : PetBaseState
     [SerializeField] private float currTime;
     [SerializeField] private Vector2 timeConstraint;
     public override void EnterState(PetStateManager manager) {
-        Debug.Log("Pet started sleeping. Zzz...");
         currTime = Random.Range(timeConstraint.x, timeConstraint.y);
         manager.GetComponentInChildren<SpriteRenderer>().color = color;
     }
@@ -23,6 +22,5 @@ public class SleepPetState : PetBaseState
     }
 
     public override void ExitState(PetStateManager manager) {
-        Debug.Log("Pet woke up, feeling refreshed!");        
     }
 }

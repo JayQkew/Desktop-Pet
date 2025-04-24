@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class TransparentWindow : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-    public Transform floor;
     [SerializeField] private LayerMask floorLayer;
     private LayerMask excludeFloorLayer;
 
@@ -80,20 +78,17 @@ public class TransparentWindow : MonoBehaviour
         Application.runInBackground = true;
 
         int taskbarHeight = GetTaskbarHeight();
-        if (text != null) {
-            text.text = $"Taskbar Height: {taskbarHeight} pixels \n Unity Height: {PixelsToUnits(taskbarHeight)} units";
-        }
-
-        Debug.Log($"Taskbar Height: {taskbarHeight} pixels");
+        float unitHeight = PixelsToUnits(taskbarHeight);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - unitHeight, Camera.main.transform.position.z);
     }
 
     private void Update() {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        SetClickthrough(Physics2D.OverlapPoint(mousePos, excludeFloorLayer) == null);
+        SetClickThrough(Physics2D.OverlapPoint(mousePos, excludeFloorLayer) == null);
     }
 
-    private void SetClickthrough(bool clickthrough) {
-        if (clickthrough) {
+    private void SetClickThrough(bool clickThrough) {
+        if (clickThrough) {
             SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
         }
         else {

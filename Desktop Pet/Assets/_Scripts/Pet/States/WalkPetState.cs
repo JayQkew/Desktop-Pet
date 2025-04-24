@@ -10,7 +10,6 @@ public class WalkPetState : PetBaseState
     [SerializeField] private Vector2 targetPosition;
     [SerializeField] private float speed;
     public override void EnterState(PetStateManager manager) {
-        Debug.Log("Pet started walking.");
         //generate a random target position
         targetPosition = new Vector2(Random.Range(xConstraint.x, xConstraint.y), manager.transform.position.y);
         manager.GetComponentInChildren<SpriteRenderer>().color = color;
@@ -26,6 +25,5 @@ public class WalkPetState : PetBaseState
     }
 
     public override void ExitState(PetStateManager manager) {
-        Debug.Log("Pet stopped walking.");
     }
 }

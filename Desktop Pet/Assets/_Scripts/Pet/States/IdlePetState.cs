@@ -9,7 +9,6 @@ public class IdlePetState : PetBaseState
     [SerializeField] private float currTime;
     [SerializeField] private Vector2 timeConstraint;
     public override void EnterState(PetStateManager manager) {
-        Debug.Log("Pet is now idle.");
         //generate a random time between the timeConstraint
         currTime = Random.Range(timeConstraint.x, timeConstraint.y);
         manager.GetComponentInChildren<SpriteRenderer>().color = color;
@@ -24,6 +23,5 @@ public class IdlePetState : PetBaseState
     }
 
     public override void ExitState(PetStateManager manager) {
-        Debug.Log("Pet is leaving the idle state.");        
     }
 }
