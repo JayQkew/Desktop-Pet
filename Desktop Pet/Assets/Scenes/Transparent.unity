@@ -1717,6 +1717,7 @@ MonoBehaviour:
     timeConstraint: {x: 0, y: 3}
   dragState:
     color: {r: 0.84972847, g: 1, b: 0.35283017, a: 1}
+    velClamp: {x: 10, y: 10}
   petState:
     color: {r: 1, g: 0.48867923, b: 0.8356712, a: 1}
   workState:

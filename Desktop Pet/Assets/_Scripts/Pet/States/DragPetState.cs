@@ -5,13 +5,14 @@ using UnityEngine;
 public class DragPetState : PetBaseState
 {
     [SerializeField] private Color color = Color.white;
-
+    [SerializeField] private Vector2 velClamp;
+    
     private Rigidbody2D rb;
     
     private Vector2 prevPos;
     private Vector2 currVel;
 
-    private float _velocityTick = 0.05f;
+    private float _velocityTick = 0.01f;
     private float _currTime = 0;
     
     public override void EnterState(PetStateManager manager) {
@@ -34,6 +35,9 @@ public class DragPetState : PetBaseState
     }
 
     public override void ExitState(PetStateManager manager) {
-        rb.linearVelocity = currVel;
+        float clampedX = Mathf.Clamp(currVel.x, -velClamp.x, velClamp.x);
+        float clampedY = Mathf.Clamp(currVel.y, -velClamp.y, velClamp.y);
+        Vector2 clampedVel = new Vector2(clampedX, clampedY);
+        rb.linearVelocity = clampedVel;
     }
 }
