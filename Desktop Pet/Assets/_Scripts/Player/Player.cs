@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             heldObject = hit.gameObject;
             _interactable = hit.GetComponent<IInteractable>();
 
-            _interactable.OnLeftPickup();
+            _interactable.OnRightPickup();
         }
     }
 
@@ -64,6 +64,10 @@ public class Player : MonoBehaviour
     }
 
     private void RightUp() {
-        
+        if (_interactable != null) {
+            _interactable.OnRightDrop();
+            heldObject = null;
+            _interactable = null;
+        }
     }
 }

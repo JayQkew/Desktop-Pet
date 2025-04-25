@@ -11,12 +11,6 @@ public class Pet : MonoBehaviour, IInteractable
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update() {
-        if (petStateManager.state == PetState.Drag) {
-            
-        }
-    }
-
     public void OnLeftPickup() {
         petStateManager.SwitchState(PetState.Drag);
         Debug.Log("Pet picked up");
