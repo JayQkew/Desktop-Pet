@@ -18,7 +18,9 @@ public class IdlePetState : PetBaseState
         currTime -= Time.deltaTime;
         if (currTime <= 0) {
             //choose a random state between SLEEP and WALK
-            manager.SwitchState(PetState.Sleep);
+            float rand = Random.Range(0f, 1f);
+            PetState nextState = rand >= 0.8f ? PetState.Sleep : PetState.Walk;
+            manager.SwitchState(nextState);
         }
     }
 

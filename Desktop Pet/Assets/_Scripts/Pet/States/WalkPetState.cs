@@ -16,7 +16,7 @@ public class WalkPetState : PetBaseState
     }
 
     public override void UpdateState(PetStateManager manager) {
-        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, speed * Time.deltaTime);
+        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, Time.deltaTime);
         manager.transform.position = new Vector3(xPos, manager.transform.position.y, manager.transform.position.z);
 
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
