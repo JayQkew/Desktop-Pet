@@ -6,7 +6,7 @@ public class PetStateManager : MonoBehaviour
 {
     public PetState state;
 
-    private PetBaseState _currState;
+    public PetBaseState currState;
     
     [SerializeField] IdlePetState idleState = new IdlePetState();
     [SerializeField] WalkPetState walkState = new WalkPetState();
@@ -19,11 +19,11 @@ public class PetStateManager : MonoBehaviour
     [SerializeField] FallPetState fallState = new FallPetState();
 
     private void Start() {
-        _currState = idleState;
+        currState = idleState;
     }
 
     private void Update() {
-        _currState.UpdateState(this);
+        currState.UpdateState(this);
 
 #if !UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.Alpha1)) SwitchState(PetState.Idle);
@@ -39,39 +39,39 @@ public class PetStateManager : MonoBehaviour
 
     public void SwitchState(PetState newState) {
         state = newState;
-        _currState.ExitState(this);
+        currState.ExitState(this);
         switch (newState) {
             case PetState.Idle:
-                _currState = idleState;
+                currState = idleState;
                 break;
             case PetState.Walk:
-                _currState = walkState;
+                currState = walkState;
                 break;
             case PetState.Sleep:
-                _currState = sleepState;
+                currState = sleepState;
                 break;
             case PetState.Drag:
-                _currState = dragState;
+                currState = dragState;
                 break;
             case PetState.Pet:
-                _currState = petState;
+                currState = petState;
                 break;
             case PetState.Work:
-                _currState = workState;
+                currState = workState;
                 break;
             case PetState.Eat:
-                _currState = eatState;
+                currState = eatState;
                 break;
             case PetState.Plant:
-                _currState = plantState;
+                currState = plantState;
                 break;
             case PetState.Fall:
-                _currState = fallState;
+                currState = fallState;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
-        _currState.EnterState(this);
+        currState.EnterState(this);
     }
 }
 

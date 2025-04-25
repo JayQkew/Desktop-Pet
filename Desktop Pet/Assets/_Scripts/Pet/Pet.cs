@@ -3,10 +3,18 @@ using UnityEngine;
 
 public class Pet : MonoBehaviour, IInteractable
 {
-    PetStateManager petStateManager;
+    private PetStateManager petStateManager;
+    private Rigidbody2D rb;
 
     private void Awake() {
         petStateManager = GetComponent<PetStateManager>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update() {
+        if (petStateManager.state == PetState.Drag) {
+            
+        }
     }
 
     public void OnPickup() {
@@ -20,7 +28,8 @@ public class Pet : MonoBehaviour, IInteractable
     }
 
     public void OnHeld(Vector2 offset) {
-        transform.position = offset;
+        // transform.position = offset;
+        rb.MovePosition(offset);
         Debug.Log("Pet held");
     }
 }
