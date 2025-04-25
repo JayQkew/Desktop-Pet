@@ -2,7 +2,11 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void OnPickup();
-    void OnDrop();
-    void OnHeld(Vector2 offset);
+    void OnLeftPickup();
+    void OnLeftDrop();
+    void OnLeftHeld(Vector2 offset);
+    
+    void OnRightPickup();
+    void OnRightDrop();
+    void OnRightHeld(Vector2 offset);
 }

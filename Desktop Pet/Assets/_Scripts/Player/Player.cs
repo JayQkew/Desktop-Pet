@@ -14,34 +14,56 @@ public class Player : MonoBehaviour
     }
 
     private void Start() {
-        _inputHandler.onLeftDown.AddListener(Click);
-        _inputHandler.onLeftHold.AddListener(Hold);
-        _inputHandler.onLeftUp.AddListener(Release);
+        _inputHandler.onLeftDown.AddListener(LeftDown);
+        _inputHandler.onLeftHold.AddListener(LeftHold);
+        _inputHandler.onLeftUp.AddListener(LeftUp);
+        
+        _inputHandler.onRightDown.AddListener(RightDown);
+        _inputHandler.onRightHold.AddListener(RightHold);
+        _inputHandler.onRightUp.AddListener(RightUp);
     }
 
-    private void Click() {
+    private void LeftDown() {
         Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, interactableLayer);
         if (hit != null) {
             heldObject = hit.gameObject;
             _interactable = hit.GetComponent<IInteractable>();
             offset = (Vector2)heldObject.transform.position - _inputHandler.mousePos;
             
-            _interactable.OnPickup();
+            _interactable.OnLeftPickup();
         }
     }
 
-    private void Hold() {
+    private void LeftHold() {
         if (_interactable != null) {
-            _interactable.OnHeld(offset + _inputHandler.mousePos);
+            _interactable.OnLeftHeld(offset + _inputHandler.mousePos);
         }
     }
 
-    private void Release() {
+    private void LeftUp() {
         if (_interactable != null) {
-            _interactable.OnDrop();
+            _interactable.OnLeftDrop();
 
             heldObject = null;
             _interactable = null;
         }
+    }
+
+    private void RightDown() {
+        Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, interactableLayer);
+        if (hit != null) {
+            heldObject = hit.gameObject;
+            _interactable = hit.GetComponent<IInteractable>();
+
+            _interactable.OnLeftPickup();
+        }
+    }
+
+    private void RightHold() {
+        
+    }
+
+    private void RightUp() {
+        
     }
 }

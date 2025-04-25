@@ -17,19 +17,31 @@ public class Pet : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnPickup() {
+    public void OnLeftPickup() {
         petStateManager.SwitchState(PetState.Drag);
         Debug.Log("Pet picked up");
     }
 
-    public void OnDrop() {
+    public void OnLeftDrop() {
         petStateManager.SwitchState(PetState.Fall);
         Debug.Log("Pet dropped");
     }
 
-    public void OnHeld(Vector2 offset) {
+    public void OnLeftHeld(Vector2 offset) {
         // transform.position = offset;
         rb.MovePosition(offset);
         Debug.Log("Pet held");
+    }
+
+    public void OnRightPickup() {
+        petStateManager.SwitchState(PetState.Pet);
+    }
+
+    public void OnRightDrop() {
+        // after a long petting session, the frog falls asleep
+        petStateManager.SwitchState(PetState.Sleep);
+    }
+
+    public void OnRightHeld(Vector2 offset) {
     }
 }
