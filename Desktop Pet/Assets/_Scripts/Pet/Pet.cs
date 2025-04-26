@@ -6,9 +6,29 @@ public class Pet : MonoBehaviour, IInteractable
     private PetStateManager petStateManager;
     private Rigidbody2D rb;
 
+    [Header("Poop")]
+    [SerializeField] private GameObject poopPrefab;
+    [SerializeField] private float poopForce;
+    [SerializeField] private float poopTimer;
+    [SerializeField] private float poopCurrTime;
+
     private void Awake() {
         petStateManager = GetComponent<PetStateManager>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update() {
+        poopCurrTime -= Time.deltaTime;
+        if (poopCurrTime <= 0) {
+            Poop();
+            poopCurrTime = poopTimer;
+        }
+    }
+
+    private void Poop() {
+        GameObject poop = Instantiate(poopPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D poopRb = poop.GetComponent<Rigidbody2D>();
+        poopRb.AddForce(Vector2.up * poopForce, ForceMode2D.Impulse);
     }
 
     public void OnLeftPickup() {

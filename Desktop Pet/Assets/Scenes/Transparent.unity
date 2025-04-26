@@ -1757,6 +1757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bd77e6fddbc6943acb7f492e682cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poopPrefab: {fileID: 4240843960673816936, guid: 3daf600acfe3d924a99ed657779f2b77, type: 3}
+  poopForce: 5
+  poopTimer: 5
+  poopCurrTime: 0
 --- !u!1 &1794845585
 GameObject:
   m_ObjectHideFlags: 0
