@@ -26,6 +26,11 @@ public class Player : MonoBehaviour
     private void LeftDown() {
         Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, interactableLayer);
         if (hit != null) {
+            // if (hit.gameObject.name == "Poop(Clone)") {
+            //     Destroy(hit.gameObject);
+            //     Debug.Log(hit.gameObject.name);
+            //     return;
+            // }
             heldObject = hit.gameObject;
             _interactable = hit.GetComponent<IInteractable>();
             offset = (Vector2)heldObject.transform.position - _inputHandler.mousePos;

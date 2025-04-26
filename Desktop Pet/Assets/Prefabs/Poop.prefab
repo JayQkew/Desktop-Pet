@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7013993095549633026}
   - component: {fileID: 7781078686979798097}
   - component: {fileID: 6261414477209345222}
-  m_Layer: 0
+  - component: {fileID: 3807320092361696482}
+  m_Layer: 7
   m_Name: Poop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +112,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3807320092361696482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240843960673816936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7326d04ff1443a54ca207ab421b589b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6722815865047147309
 GameObject:
   m_ObjectHideFlags: 0
