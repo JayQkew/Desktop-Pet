@@ -8,7 +8,9 @@ public class WalkPetState : PetBaseState
     [SerializeField] private Color color = Color.white;
     [SerializeField] private Vector2 xConstraint;
     public Vector2 targetPosition;
+    private float currSpeed;
     [SerializeField] private float speed;
+    [SerializeField] private float foodSpeed;
     [SerializeField] private GameObject food;
     public override void EnterState(PetStateManager manager) {
         //generate a random target position
@@ -24,7 +26,7 @@ public class WalkPetState : PetBaseState
 
     public override void UpdateState(PetStateManager manager) {
         if(food) targetPosition = new Vector3(food.transform.position.x, manager.transform.position.y);
-        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, Time.deltaTime);
+        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, food ? Time.deltaTime * foodSpeed : Time.deltaTime);
         manager.transform.position = new Vector3(xPos, manager.transform.position.y, manager.transform.position.z);
 
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
