@@ -12,6 +12,9 @@ public class Pet : MonoBehaviour, IInteractable
     [SerializeField] private float poopTimer;
     [SerializeField] private float poopCurrTime;
 
+    [Header("Food")]
+    public GameObject targetFood;
+
     private void Awake() {
         petStateManager = GetComponent<PetStateManager>();
         rb = GetComponent<Rigidbody2D>();
