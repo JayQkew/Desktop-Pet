@@ -30,7 +30,7 @@ public class Pet : MonoBehaviour, IInteractable
             if (poopCurrTime <= 0) {
                 Poop();
                 poopCurrTime = poopTimer;
-                foodEaten = 0;
+                foodEaten -= poopThreshold;
             }
         }
     }
