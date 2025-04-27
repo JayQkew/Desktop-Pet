@@ -7,13 +7,24 @@ public class Food : MonoBehaviour, IInteractable
     [SerializeField] private float radius;
     [SerializeField] private LayerMask petLayer;
     [SerializeField] private GameObject petTarget;
+    [SerializeField] private Vector2 velClamp;
+
+    private Rigidbody2D rb;
+    private Vector2 prevPos;
+    private Vector2 currVel;
+
+    private float _velocityTick = 0.01f;
+    private float _currTime = 0;
+    private void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update() {
         FoodRadius();
     }
 
     private void FoodRadius() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, radius, petLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, radius, Vector2.zero, 0, petLayer);
         if (hit) {
             petTarget = hit.collider.gameObject;
             petTarget.GetComponent<Pet>().targetFood = gameObject;
@@ -22,26 +33,36 @@ public class Food : MonoBehaviour, IInteractable
     }
 
     public void OnLeftPickup() {
-        throw new NotImplementedException();
+        rb.linearVelocity = Vector2.zero;
+        prevPos = transform.position;
+        currVel = Vector2.zero;
     }
 
     public void OnLeftDrop() {
-        throw new NotImplementedException();
+        float clampedX = Mathf.Clamp(currVel.x, -velClamp.x, velClamp.x);
+        float clampedY = Mathf.Clamp(currVel.y, -velClamp.y, velClamp.y);
+        Vector2 clampedVel = new Vector2(clampedX, clampedY);
+        rb.linearVelocity = clampedVel;
     }
 
     public void OnLeftHeld(Vector2 offset) {
-        throw new NotImplementedException();
+        rb.MovePosition(offset);
+        rb.linearVelocity = Vector2.zero;
+        _currTime += Time.deltaTime;
+        if (_currTime >= _velocityTick) {
+            Vector2 currPos = transform.position;
+            currVel = (currPos - prevPos)/_currTime;
+            prevPos = currPos;
+            _currTime = 0;
+        }
     }
 
     public void OnRightPickup() {
-        throw new NotImplementedException();
     }
 
     public void OnRightDrop() {
-        throw new NotImplementedException();
     }
 
     public void OnRightHeld(Vector2 offset) {
-        throw new NotImplementedException();
     }
 }
