@@ -24,17 +24,6 @@ public class PetStateManager : MonoBehaviour
 
     private void Update() {
         currState.UpdateState(this);
-
-#if !UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.Alpha1)) SwitchState(PetState.Idle);
-        else if(Input.GetKeyDown(KeyCode.Alpha2)) SwitchState(PetState.Walk);
-        else if(Input.GetKeyDown(KeyCode.Alpha3)) SwitchState(PetState.Sleep);
-        else if(Input.GetKeyDown(KeyCode.Alpha4)) SwitchState(PetState.Drag);
-        else if(Input.GetKeyDown(KeyCode.Alpha5)) SwitchState(PetState.Pet);
-        else if(Input.GetKeyDown(KeyCode.Alpha6)) SwitchState(PetState.Work);
-        else if(Input.GetKeyDown(KeyCode.Alpha7)) SwitchState(PetState.Eat);
-        else if(Input.GetKeyDown(KeyCode.Alpha8)) SwitchState(PetState.Plant);
-#endif
     }
 
     public void SwitchState(PetState newState) {
