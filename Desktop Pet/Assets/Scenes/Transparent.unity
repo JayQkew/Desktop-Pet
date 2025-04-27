@@ -939,7 +939,7 @@ Transform:
   m_GameObject: {fileID: 755765398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.19, y: 0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -958,11 +958,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a3a9b51085b5d46aeb85509febd592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  petTarget: {fileID: 0}
+  foodAmount: 5
   radius: 2.5
   petLayer:
     serializedVersion: 2
     m_Bits: 64
-  petTarget: {fileID: 0}
   velClamp: {x: 10, y: 10}
 --- !u!1 &761391431
 GameObject:
@@ -1924,6 +1925,7 @@ MonoBehaviour:
     xConstraint: {x: -8.25, y: 8.25}
     targetPosition: {x: 0, y: 0}
     speed: 5
+    food: {fileID: 0}
   sleepState:
     color: {r: 0.18905655, g: 0.23550396, b: 0.6301887, a: 1}
     currTime: 0
@@ -1935,6 +1937,9 @@ MonoBehaviour:
     color: {r: 1, g: 0.48867923, b: 0.8356712, a: 1}
   workState:
     color: {r: 1, g: 0.4760973, b: 0, a: 1}
+  eatState:
+    color: {r: 0.5318312, g: 0, b: 0.99607843, a: 1}
+    food: {fileID: 0}
   plantState:
     color: {r: 0.5683641, g: 1, b: 0.27735847, a: 1}
   fallState:

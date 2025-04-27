@@ -26,10 +26,9 @@ public class Food : MonoBehaviour, IInteractable
 
     private void FoodRadius() {
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, radius, Vector2.zero, 0, petLayer);
-        if (hit) {
+        if (hit && !petTarget) {
             petTarget = hit.collider.gameObject;
             petTarget.GetComponent<Pet>().Food(gameObject);
-            Debug.Log("Food Located");
         }
     }
 
