@@ -15,6 +15,7 @@ public class EatPetState : PetBaseState
 
     public override void UpdateState(PetStateManager manager) {
         food.foodAmount -= Time.deltaTime;
+        manager.GetComponent<Pet>().foodEaten += Time.deltaTime;
         
         if(food.foodAmount <= 0) {
             Object.Destroy(food.gameObject);

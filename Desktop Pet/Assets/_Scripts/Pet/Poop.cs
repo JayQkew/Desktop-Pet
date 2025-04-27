@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[SelectionBase]
 public class Poop : MonoBehaviour, IInteractable
 {
     public void OnLeftPickup() {

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[SelectionBase]
 public class Pet : MonoBehaviour, IInteractable
 {
     private PetStateManager petStateManager;
@@ -14,17 +15,22 @@ public class Pet : MonoBehaviour, IInteractable
 
     [Header("Food")]
     public GameObject targetFood;
+    public float foodEaten;
+    public float poopThreshold;
 
     private void Awake() {
         petStateManager = GetComponent<PetStateManager>();
         rb = GetComponent<Rigidbody2D>();
+        poopCurrTime = poopTimer;
     }
 
     private void Update() {
-        poopCurrTime -= Time.deltaTime;
-        if (poopCurrTime <= 0) {
-            Poop();
-            poopCurrTime = poopTimer;
+        if (foodEaten >= poopThreshold) {
+            poopCurrTime -= Time.deltaTime;
+            if (poopCurrTime <= 0) {
+                Poop();
+                poopCurrTime = poopTimer;
+            }
         }
     }
 
