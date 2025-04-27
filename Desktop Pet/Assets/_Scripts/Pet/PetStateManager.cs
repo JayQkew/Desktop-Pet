@@ -8,15 +8,15 @@ public class PetStateManager : MonoBehaviour
 
     public PetBaseState currState;
     
-    [SerializeField] IdlePetState idleState = new IdlePetState();
-    [SerializeField] WalkPetState walkState = new WalkPetState();
-    [SerializeField] SleepPetState sleepState = new SleepPetState();
-    [SerializeField] DragPetState dragState = new DragPetState();
-    [SerializeField] PetPetState petState = new PetPetState();
-    [SerializeField] WorkPetState workState = new WorkPetState();
-    [SerializeField] EatPetState eatState = new EatPetState();
-    [SerializeField] PlantPetState plantState = new PlantPetState();
-    [SerializeField] FallPetState fallState = new FallPetState();
+    public IdlePetState idleState = new IdlePetState();
+    public WalkPetState walkState = new WalkPetState();
+    public SleepPetState sleepState = new SleepPetState();
+    public DragPetState dragState = new DragPetState();
+    public PetPetState petState = new PetPetState();
+    public WorkPetState workState = new WorkPetState();
+    public EatPetState eatState = new EatPetState();
+    public PlantPetState plantState = new PlantPetState();
+    public FallPetState fallState = new FallPetState();
 
     private void Start() {
         currState = idleState;

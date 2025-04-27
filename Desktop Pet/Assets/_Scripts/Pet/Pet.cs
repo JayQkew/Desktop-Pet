@@ -34,6 +34,11 @@ public class Pet : MonoBehaviour, IInteractable
         poopRb.AddForce(Vector2.up * poopForce, ForceMode2D.Impulse);
     }
 
+    public void Food(GameObject food) {
+        targetFood = food;
+        petStateManager.SwitchState(PetState.Walk);
+    }
+
     public void OnLeftPickup() {
         petStateManager.SwitchState(PetState.Drag);
         Debug.Log("Pet picked up");

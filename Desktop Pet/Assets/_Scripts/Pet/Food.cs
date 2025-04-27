@@ -4,9 +4,10 @@ using UnityEngine.Serialization;
 
 public class Food : MonoBehaviour, IInteractable
 {
+    public GameObject petTarget;
+    public float foodAmount; // time taken to eat food
     [SerializeField] private float radius;
     [SerializeField] private LayerMask petLayer;
-    [SerializeField] private GameObject petTarget;
     [SerializeField] private Vector2 velClamp;
 
     private Rigidbody2D rb;
@@ -27,7 +28,7 @@ public class Food : MonoBehaviour, IInteractable
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, radius, Vector2.zero, 0, petLayer);
         if (hit) {
             petTarget = hit.collider.gameObject;
-            petTarget.GetComponent<Pet>().targetFood = gameObject;
+            petTarget.GetComponent<Pet>().Food(gameObject);
             Debug.Log("Food Located");
         }
     }
