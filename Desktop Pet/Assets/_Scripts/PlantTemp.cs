@@ -10,6 +10,6 @@ public class PlantTemp : ScriptableObject
     
     [SerializeField] private Sprite sprite;
 
-    public File file;
+    // public File file;
     // calculate other times
 }
