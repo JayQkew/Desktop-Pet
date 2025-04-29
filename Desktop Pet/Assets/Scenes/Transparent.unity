@@ -1725,7 +1725,7 @@ MonoBehaviour:
   workState:
     color: {r: 1, g: 0.4760973, b: 0, a: 1}
   eatState:
-    color: {r: 0.5318312, g: 0, b: 0.99607843, a: 1}
+    color: {r: 0.58714914, g: 0.111320674, b: 1, a: 1}
     food: {fileID: 0}
   plantState:
     color: {r: 0.5683641, g: 1, b: 0.27735847, a: 1}
