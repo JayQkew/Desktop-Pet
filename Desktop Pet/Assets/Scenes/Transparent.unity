@@ -1734,6 +1734,8 @@ MonoBehaviour:
     floorMask:
       serializedVersion: 2
       m_Bits: 8
+    decelerationSpeed: 3
+    fallSpeed: 2
 --- !u!4 &1646413469
 Transform:
   m_ObjectHideFlags: 0
