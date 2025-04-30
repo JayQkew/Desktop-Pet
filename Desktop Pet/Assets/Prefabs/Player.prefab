@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 7619696586416357510}
   - component: {fileID: 5969733366261062708}
   - component: {fileID: 479375080229714938}
+  - component: {fileID: 1343710961774608788}
   m_Layer: 6
   m_Name: Pet
   m_TagString: Untagged
@@ -994,6 +995,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1343710961774608788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985146567358686072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 1602911073
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &8002573817089217429
 GameObject:
   m_ObjectHideFlags: 0
