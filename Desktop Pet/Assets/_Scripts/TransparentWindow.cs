@@ -1,13 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TransparentWindow : MonoBehaviour
 {
     [SerializeField] private LayerMask floorLayer;
     private LayerMask excludeFloorLayer;
+    private Camera cam;
+    [SerializeField] private List<RectTransform> clickableUIElements = new List<RectTransform>();
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetActiveWindow();
@@ -63,6 +67,8 @@ public class TransparentWindow : MonoBehaviour
 
     private void Start() {
         excludeFloorLayer = ~floorLayer;
+        if(!cam) cam = Camera.main;
+        FindAndRegisterNetworkHUD();
         // Application.OpenURL("https://www.youtube.com/watch?v=xvFZjo5PgG0");
 #if !UNITY_EDITOR
         hWnd = GetActiveWindow();
@@ -79,12 +85,17 @@ public class TransparentWindow : MonoBehaviour
 
         int taskbarHeight = GetTaskbarHeight();
         float unitHeight = PixelsToUnits(taskbarHeight);
-        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - unitHeight, Camera.main.transform.position.z);
+        cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y - unitHeight, cam.transform.position.z);
     }
 
     private void Update() {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        SetClickThrough(Physics2D.OverlapPoint(mousePos, excludeFloorLayer) == null);
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Vector2 worldPos = cam.ScreenToWorldPoint(mousePos);
+        
+        bool overPhysicsObject = Physics2D.OverlapPoint(worldPos, excludeFloorLayer) != null;
+        bool overUIElement = IsMouseOverUIElement(mousePos);
+        
+        SetClickThrough(!(overPhysicsObject || overUIElement));
     }
 
     private void SetClickThrough(bool clickThrough) {
@@ -138,5 +149,60 @@ public class TransparentWindow : MonoBehaviour
 
         float unitsPerPixel = (cam.orthographicSize * 2f) / Screen.height;
         return pixels * unitsPerPixel;
+    }
+    
+    private void FindAndRegisterNetworkHUD() {
+        // Look for NetworkManagerHUD using reflection to avoid Mirror dependency in this script
+        var hudType = Type.GetType("Mirror.NetworkManagerHUD, Mirror");
+        if (hudType != null) {
+            var hud = FindObjectOfType(hudType);
+            if (hud != null) {
+                var hudTransform = (hud as MonoBehaviour)?.GetComponent<RectTransform>();
+                
+                if (hudTransform == null) {
+                    // If HUD doesn't have RectTransform directly, check parent Canvas
+                    var canvas = (hud as MonoBehaviour)?.GetComponentInParent<Canvas>();
+                    if (canvas != null) {
+                        hudTransform = canvas.GetComponent<RectTransform>();
+                    }
+                }
+                
+                if (hudTransform != null) {
+                    AddClickableUIElement(hudTransform);
+                    Debug.Log("Found and registered Mirror NetworkManagerHUD");
+                }
+            }
+        }
+    }
+    
+    private bool IsMouseOverUIElement(Vector2 mousePosition) {
+        // First check if pointer is over any UI element using EventSystem
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return true;
+            
+        // Then specifically check our registered UI elements
+        foreach (RectTransform uiElement in clickableUIElements) {
+            if (uiElement == null) continue;
+            
+            // Convert screen position to local position
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    uiElement, 
+                    mousePosition, 
+                    cam, 
+                    out Vector2 localPoint)) {
+                
+                // Check if point is inside rect
+                if (uiElement.rect.Contains(localPoint)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    public void AddClickableUIElement(RectTransform element) {
+        if (!clickableUIElements.Contains(element)) {
+            clickableUIElements.Add(element);
+        }
     }
 }
