@@ -5,37 +5,33 @@ using UnityEngine;
 public class Textbox : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI textbox;
-    
-    [Client]
-    public void DisplayName(string playerName) => textbox.text = $"**{playerName}**";
 
     [Server]
-    public void ServerDisplayYou(NetworkConnection targetClient) {
-        DisplayYou(targetClient);
+    public void ServerDisplayYou() {
+        DisplayYou();
     }
     
     [TargetRpc]
-    private void DisplayYou(NetworkConnection target) => textbox.text = "*";
-    
-    
+    private void DisplayYou() => textbox.text = "*";
+
     [Server]
-    public void ServerDisplayOwn(NetworkConnection target, string ownerName) {
-        DisplayOwnPet(target, ownerName);
+    public void ServerOwnPet(string petName) {
+        DisplayOwnPet(petName);
     }
     
     [TargetRpc]
-    private void DisplayOwnPet(NetworkConnection target, string ownerName) {
-        textbox.text = $"**{ownerName}**";
+    private void DisplayOwnPet(string petName) {
+        textbox.text = $"**{petName}**";
     }
-    
+
     [Server]
-    public void ServerDisplayOther(NetworkConnection target, string ownerName) {
-        DisplayOtherPet(target, ownerName);
+    public void ServerOtherPet(string petName) {
+        DisplayOtherPet(petName);
     }
     
     [TargetRpc]
-    private void DisplayOtherPet(NetworkConnection target, string petOwnerName) {
-        textbox.text = petOwnerName;
+    private void DisplayOtherPet(string petName) {
+        textbox.text = petName;
     }
     public void DisplayText(string t) => textbox.text = t;
 }

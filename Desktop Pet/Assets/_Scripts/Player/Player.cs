@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
+    [SyncVar]
     public string playerName;
 
     [Space(10)]
@@ -38,20 +39,22 @@ public class Player : NetworkBehaviour
 
     public override void OnStartClient() {
         base.OnStartClient();
-        if(isLocalPlayer) CmdPlayerTextbox();
+        if(isLocalPlayer) CmdDisplayYou();
         else _textbox.DisplayText("");
     }
 
     [Command]
-    private void CmdPlayerTextbox() {
-        _textbox.ServerDisplayYou(connectionToClient);
+    private void CmdDisplayYou() {
+        _textbox.ServerDisplayYou();
     }
     
     private void Hover() {
+        //on the client, this is always empty
         Collider2D[] hit = Physics2D.OverlapPointAll(_inputHandler.mousePos, interactableLayer);
 
         if (hit.Length == 0) {
-            CmdPlayerTextbox();
+            Debug.Log(gameObject.name + " is not Hovering");
+            CmdDisplayYou();
             hoverObjects = Array.Empty<GameObject>();
             return;
         }
@@ -75,11 +78,11 @@ public class Player : NetworkBehaviour
     private void CmdPetDisplay(uint playerNetId) {
         if (NetworkServer.spawned.TryGetValue(playerNetId, out NetworkIdentity identity)) {
             Player petOwner = identity.GetComponent<Player>();
-            if (isLocalPlayer) {
-                if (petOwner.netId == netId) {
-                    petOwner._textbox.ServerDisplayOwn(connectionToClient, playerName);
+            if (petOwner != null) {
+                if (isLocalPlayer) {
+                    petOwner._textbox.ServerOwnPet(playerName);
                 } else {
-                    petOwner._textbox.ServerDisplayOther(connectionToClient, petOwner.playerName);
+                    petOwner._textbox.ServerOtherPet(petOwner.playerName);
                 }
             }
         }
