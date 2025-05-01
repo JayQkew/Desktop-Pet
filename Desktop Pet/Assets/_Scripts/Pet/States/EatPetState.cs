@@ -5,11 +5,9 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class EatPetState : PetBaseState
 {
-    [SerializeField] private Sprite sprite;
     public Food food;
     private Pet pet;
     public override void EnterState(PetStateManager manager) {
-        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         pet ??= manager.GetComponent<Pet>();
         food = pet.targetFood.GetComponent<Food>();
         manager.walkState.targetPosition = food.transform.position;

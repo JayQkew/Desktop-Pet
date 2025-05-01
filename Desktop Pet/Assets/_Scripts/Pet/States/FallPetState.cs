@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class FallPetState : PetBaseState
 {
-    [SerializeField] private Sprite sprite;
     [SerializeField] private LayerMask floorMask;
     [SerializeField] private float decelerationSpeed = 1f;
     [SerializeField] private float fallSpeed = 1f;
@@ -13,7 +12,6 @@ public class FallPetState : PetBaseState
 
     public override void EnterState(PetStateManager manager) {
         if(!rb) rb = manager.GetComponent<Rigidbody2D>();
-        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         _transform = manager.transform;
     }
 

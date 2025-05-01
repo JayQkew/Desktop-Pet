@@ -4,10 +4,6 @@ using UnityEngine;
 [SelectionBase]
 public class Poop : NetworkBehaviour, IInteractable
 {
-    public override void OnStartClient() {
-        base.OnStartClient();
-    }
-
     [Command(requiresAuthority = false)]
     private void CmdDestroyPoop() {
         NetworkServer.Destroy(gameObject);

@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 5969733366261062708}
   - component: {fileID: 479375080229714938}
   - component: {fileID: 3651461821581961620}
+  - component: {fileID: 6035706093444763717}
   m_Layer: 6
   m_Name: Pet
   m_TagString: Untagged
@@ -269,6 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bd77e6fddbc6943acb7f492e682cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   poopPrefab: {fileID: 4240843960673816936, guid: 3daf600acfe3d924a99ed657779f2b77, type: 3}
   poopForce: 5
   poopTimer: 5
@@ -293,34 +297,22 @@ MonoBehaviour:
   syncInterval: 0
   state: 0
   idleState:
-    sprite: {fileID: -6080018314438753889, guid: 70d05d0c7f345c94fa4c2eb6fe51bbcc, type: 3}
     currTime: 0
     timeConstraint: {x: 0, y: 3}
   walkState:
-    sprite: {fileID: -2608903245981360508, guid: a855d9c8f4965b94eb48db8fa26519cf, type: 3}
     xConstraint: {x: -8.25, y: 8.25}
     targetPosition: {x: 0, y: 0}
     speed: 5
     foodSpeed: 2.5
     food: {fileID: 0}
   sleepState:
-    sprite: {fileID: 21300000, guid: 22448a2eb9b082e41a849ddb6fbc660e, type: 3}
     currTime: 0
     timeConstraint: {x: 2, y: 3}
   dragState:
-    sprite: {fileID: 5551810173411094980, guid: 1e6326c0986002540890f3197f741275, type: 3}
     velClamp: {x: 10, y: 10}
-  petState:
-    sprite: {fileID: 8007791968108310611, guid: 03b94be06bc29024dbd8cfffb9228d56, type: 3}
-  workState:
-    sprite: {fileID: -2844323007035802397, guid: 7b8110bdf45bfbf41b583f771c3e61d8, type: 3}
   eatState:
-    sprite: {fileID: 4460930968327224097, guid: aaec38ee07cf32844b222df9d8c5a29e, type: 3}
     food: {fileID: 0}
-  plantState:
-    sprite: {fileID: -8246497658288747265, guid: 610e57a0272dff0409c00d29a3ced7ee, type: 3}
   fallState:
-    sprite: {fileID: -8331346449641571253, guid: 718de83d906e47e48be6942346b1c5f4, type: 3}
     floorMask:
       serializedVersion: 2
       m_Bits: 8
@@ -423,6 +415,23 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &6035706093444763717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985146567358686072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 1
+  animator: {fileID: 8979749194785516795}
 --- !u!1 &8002573817089217429
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +442,8 @@ GameObject:
   m_Component:
   - component: {fileID: 450393321152544399}
   - component: {fileID: 5027567879724080143}
+  - component: {fileID: 8979749194785516795}
+  - component: {fileID: 2639773403926378167}
   m_Layer: 0
   m_Name: GUI
   m_TagString: Untagged
@@ -511,6 +522,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8979749194785516795
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8002573817089217429}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e9497e043094804281308fd854b72d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2639773403926378167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8002573817089217429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9cc45fa80175944be366fb20869d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8442576480856728504
 GameObject:
   m_ObjectHideFlags: 0

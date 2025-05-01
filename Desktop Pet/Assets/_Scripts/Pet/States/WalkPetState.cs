@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class WalkPetState : PetBaseState
 {
-    [SerializeField] private Sprite sprite;
     [SerializeField] private Vector2 xConstraint;
     private SpriteRenderer sr;
     private Pet pet;
@@ -24,7 +23,6 @@ public class WalkPetState : PetBaseState
 
         // ??= checks if sr is null and if it is, assigns it a value
         sr ??= manager.GetComponentInChildren<SpriteRenderer>();
-        sr.sprite = sprite;
         
         pet ??= manager.GetComponent<Pet>();
         Debug.Log("Pet is walking!");

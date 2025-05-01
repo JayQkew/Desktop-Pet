@@ -4,10 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PlantPetState : PetBaseState
 {
-    [SerializeField] private Sprite sprite;
     public override void EnterState(PetStateManager manager) {
         Debug.Log("Pet started planting something.");
-        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
     }
 
     public override void UpdateState(PetStateManager manager) {

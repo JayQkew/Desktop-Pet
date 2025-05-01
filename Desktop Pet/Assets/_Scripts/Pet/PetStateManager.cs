@@ -7,7 +7,7 @@ public class PetStateManager : NetworkBehaviour
 {
     public PetState state;
 
-    public PetBaseState currState;
+    private PetBaseState _currState;
     
     public IdlePetState idleState = new IdlePetState();
     public WalkPetState walkState = new WalkPetState();
@@ -19,12 +19,18 @@ public class PetStateManager : NetworkBehaviour
     public PlantPetState plantState = new PlantPetState();
     public FallPetState fallState = new FallPetState();
 
+    private PetGUI _gui;
+
+    private void Awake() {
+        _gui = GetComponentInChildren<PetGUI>();
+    }
+
     private void Start() {
-        currState = idleState;
+        _currState = idleState;
     }
 
     private void Update() {
-        currState.UpdateState(this);
+        _currState.UpdateState(this);
     }
 
     [Command]
@@ -35,39 +41,40 @@ public class PetStateManager : NetworkBehaviour
     [ClientRpc]
     private void RpcSwitchState(PetState newState) {
         state = newState;
-        currState.ExitState(this);
+        _currState.ExitState(this);
         switch (newState) {
             case PetState.Idle:
-                currState = idleState;
+                _currState = idleState;
                 break;
             case PetState.Walk:
-                currState = walkState;
+                _currState = walkState;
                 break;
             case PetState.Sleep:
-                currState = sleepState;
+                _currState = sleepState;
                 break;
             case PetState.Drag:
-                currState = dragState;
+                _currState = dragState;
                 break;
             case PetState.Pet:
-                currState = petState;
+                _currState = petState;
                 break;
             case PetState.Work:
-                currState = workState;
+                _currState = workState;
                 break;
             case PetState.Eat:
-                currState = eatState;
+                _currState = eatState;
                 break;
             case PetState.Plant:
-                currState = plantState;
+                _currState = plantState;
                 break;
             case PetState.Fall:
-                currState = fallState;
+                _currState = fallState;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
-        currState.EnterState(this);
+        _currState.EnterState(this);
+        _gui.SetAnim(newState);
     }
 }
 

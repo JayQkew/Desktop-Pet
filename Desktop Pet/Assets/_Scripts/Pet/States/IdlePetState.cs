@@ -5,12 +5,10 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class IdlePetState : PetBaseState
 {
-    [SerializeField] private Sprite sprite;
     [SerializeField] private float currTime;
     [SerializeField] private Vector2 timeConstraint;
     public override void EnterState(PetStateManager manager) {
         //generate a random time between the timeConstraint
-        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         currTime = Random.Range(timeConstraint.x, timeConstraint.y);
     }
 
