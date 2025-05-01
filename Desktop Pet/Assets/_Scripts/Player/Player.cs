@@ -5,15 +5,19 @@ using UnityEngine;
 public class Player : NetworkBehaviour
 {
     public string playerName;
+
     [Space(10)]
+    private GameObject _pet;
     private Textbox _textbox;
     private InputHandler _inputHandler;
+    [SerializeField] private GameObject[] hoverObjects = Array.Empty<GameObject>();
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
     [SerializeField] private LayerMask interactableLayer;
     private Vector2 offset;
 
     private void Awake() {
+        _pet = transform.GetChild(0).gameObject;
         _inputHandler = GetComponent<InputHandler>();
         _textbox = GetComponent<Textbox>();
     }
@@ -28,15 +32,57 @@ public class Player : NetworkBehaviour
         _inputHandler.onRightUp.AddListener(RightUp);
     }
 
+    private void Update() {
+        Hover();
+    }
+
     public override void OnStartClient() {
         base.OnStartClient();
         if(isLocalPlayer) CmdPlayerTextbox();
-        else _textbox.DisplayText(playerName);
+        else _textbox.DisplayText("");
     }
 
     [Command]
     private void CmdPlayerTextbox() {
         _textbox.ServerDisplayYou(connectionToClient);
+    }
+    
+    private void Hover() {
+        Collider2D[] hit = Physics2D.OverlapPointAll(_inputHandler.mousePos, interactableLayer);
+
+        if (hit.Length == 0) {
+            CmdPlayerTextbox();
+            hoverObjects = Array.Empty<GameObject>();
+            return;
+        }
+        
+        GameObject[] hitGameObjects = new GameObject[hit.Length];
+        for (int i = 0; i < hit.Length; i++) {
+            hitGameObjects[i] = hit[i].gameObject;
+            Player hitPlayer = hitGameObjects[i].GetComponentInParent<Player>();
+
+            if (hitPlayer == null) continue;
+            
+            if (hitGameObjects[i] == hitPlayer.transform.GetChild(0).gameObject) {
+                CmdPetDisplay(hitPlayer.netId);
+            }
+        }
+
+        hoverObjects = hitGameObjects;
+    }
+
+    [Command]
+    private void CmdPetDisplay(uint playerNetId) {
+        if (NetworkServer.spawned.TryGetValue(playerNetId, out NetworkIdentity identity)) {
+            Player petOwner = identity.GetComponent<Player>();
+            if (isLocalPlayer) {
+                if (petOwner.netId == netId) {
+                    petOwner._textbox.ServerDisplayOwn(connectionToClient, playerName);
+                } else {
+                    petOwner._textbox.ServerDisplayOther(connectionToClient, petOwner.playerName);
+                }
+            }
+        }
     }
 
     private void LeftDown() {

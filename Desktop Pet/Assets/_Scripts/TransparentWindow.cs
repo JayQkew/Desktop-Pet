@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class TransparentWindow : MonoBehaviour
 {
     [SerializeField] private LayerMask floorLayer;
-    [SerializeField] private bool usePhysicsDetection = true; // Toggle for physics-based click detection
     
     private LayerMask excludeFloorLayer;
     private Camera cam;

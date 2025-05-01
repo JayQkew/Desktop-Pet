@@ -15,7 +15,27 @@ public class Textbox : NetworkBehaviour
     }
     
     [TargetRpc]
-    public void DisplayYou(NetworkConnection target) => textbox.text = "*";
+    private void DisplayYou(NetworkConnection target) => textbox.text = "*";
+    
+    
+    [Server]
+    public void ServerDisplayOwn(NetworkConnection target, string ownerName) {
+        DisplayOwnPet(target, ownerName);
+    }
+    
+    [TargetRpc]
+    private void DisplayOwnPet(NetworkConnection target, string ownerName) {
+        textbox.text = $"**{ownerName}**";
+    }
+    
+    [Server]
+    public void ServerDisplayOther(NetworkConnection target, string ownerName) {
+        DisplayOtherPet(target, ownerName);
+    }
+    
+    [TargetRpc]
+    private void DisplayOtherPet(NetworkConnection target, string petOwnerName) {
+        textbox.text = petOwnerName;
+    }
     public void DisplayText(string t) => textbox.text = t;
-    public void DisplayPet() => textbox.text = "*";
 }
