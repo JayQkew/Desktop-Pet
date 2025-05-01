@@ -1,8 +1,9 @@
 using System;
+using Mirror;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PetStateManager : MonoBehaviour
+public class PetStateManager : NetworkBehaviour
 {
     public PetState state;
 
@@ -26,7 +27,13 @@ public class PetStateManager : MonoBehaviour
         currState.UpdateState(this);
     }
 
-    public void SwitchState(PetState newState) {
+    [Command]
+    public void SwitchState(PetState petState) {
+        ServerSwitchState(petState);
+    }
+    
+    [ClientRpc]
+    public void ServerSwitchState(PetState newState) {
         state = newState;
         currState.ExitState(this);
         switch (newState) {
