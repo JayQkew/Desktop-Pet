@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class DragPetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     [SerializeField] private Vector2 velClamp;
     

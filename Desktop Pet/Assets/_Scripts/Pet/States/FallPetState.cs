@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class FallPetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     [SerializeField] private LayerMask floorMask;
     [SerializeField] private float decelerationSpeed = 1f;

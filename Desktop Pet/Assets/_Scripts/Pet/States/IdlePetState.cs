@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class IdlePetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     [SerializeField] private float currTime;
     [SerializeField] private Vector2 timeConstraint;

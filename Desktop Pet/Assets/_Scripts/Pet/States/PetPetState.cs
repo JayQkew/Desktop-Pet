@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class PetPetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     public override void EnterState(PetStateManager manager) {
         Debug.Log("Pet is being petted. Purrrr...");

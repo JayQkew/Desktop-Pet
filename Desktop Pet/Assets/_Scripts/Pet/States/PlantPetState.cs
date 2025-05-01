@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class PlantPetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     public override void EnterState(PetStateManager manager) {
         Debug.Log("Pet started planting something.");

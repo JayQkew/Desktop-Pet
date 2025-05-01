@@ -293,12 +293,10 @@ MonoBehaviour:
   syncInterval: 0
   state: 0
   idleState:
-    color: {r: 0.5686275, g: 1, b: 0.2784314, a: 1}
     sprite: {fileID: -6080018314438753889, guid: 70d05d0c7f345c94fa4c2eb6fe51bbcc, type: 3}
     currTime: 0
     timeConstraint: {x: 0, y: 3}
   walkState:
-    color: {r: 0.5113207, g: 0.81592315, b: 1, a: 1}
     sprite: {fileID: -2608903245981360508, guid: a855d9c8f4965b94eb48db8fa26519cf, type: 3}
     xConstraint: {x: -8.25, y: 8.25}
     targetPosition: {x: 0, y: 0}
@@ -306,29 +304,22 @@ MonoBehaviour:
     foodSpeed: 2.5
     food: {fileID: 0}
   sleepState:
-    color: {r: 0.18905655, g: 0.23550396, b: 0.6301887, a: 1}
     sprite: {fileID: 21300000, guid: 22448a2eb9b082e41a849ddb6fbc660e, type: 3}
     currTime: 0
     timeConstraint: {x: 2, y: 3}
   dragState:
-    color: {r: 0.84972847, g: 1, b: 0.35283017, a: 1}
     sprite: {fileID: 5551810173411094980, guid: 1e6326c0986002540890f3197f741275, type: 3}
     velClamp: {x: 10, y: 10}
   petState:
-    color: {r: 1, g: 0.48867923, b: 0.8356712, a: 1}
     sprite: {fileID: 8007791968108310611, guid: 03b94be06bc29024dbd8cfffb9228d56, type: 3}
   workState:
-    color: {r: 1, g: 0.4760973, b: 0, a: 1}
     sprite: {fileID: -2844323007035802397, guid: 7b8110bdf45bfbf41b583f771c3e61d8, type: 3}
   eatState:
-    color: {r: 0.58714914, g: 0.111320674, b: 1, a: 1}
     sprite: {fileID: 4460930968327224097, guid: aaec38ee07cf32844b222df9d8c5a29e, type: 3}
     food: {fileID: 0}
   plantState:
-    color: {r: 0.5683641, g: 1, b: 0.27735847, a: 1}
     sprite: {fileID: -8246497658288747265, guid: 610e57a0272dff0409c00d29a3ced7ee, type: 3}
   fallState:
-    color: {r: 1, g: 0.046428576, b: 0.013207495, a: 1}
     sprite: {fileID: -8331346449641571253, guid: 718de83d906e47e48be6942346b1c5f4, type: 3}
     floorMask:
       serializedVersion: 2
@@ -369,7 +360,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05}
   m_Radius: 0.25
 --- !u!50 &479375080229714938
 Rigidbody2D:

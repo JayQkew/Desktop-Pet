@@ -5,7 +5,6 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class EatPetState : PetBaseState
 {
-    [SerializeField] private Color color = Color.white;
     [SerializeField] private Sprite sprite;
     public Food food;
     public override void EnterState(PetStateManager manager) {
