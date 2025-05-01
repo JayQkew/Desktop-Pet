@@ -92,23 +92,11 @@ public class TransparentWindow : MonoBehaviour
         bool shouldBeClickable = ShouldBeClickable(worldMousePos, mousePos);
         SetClickThrough(!shouldBeClickable);
     }
+    
 
     private bool ShouldBeClickable(Vector2 worldMousePos, Vector2 screenMousePos) {
-        bool hasPhysicsCollider = false;
-        
-        // Physics-based detection
-        if (usePhysicsDetection) {
-            hasPhysicsCollider = Physics2D.OverlapPoint(worldMousePos, excludeFloorLayer) != null;
-            if (hasPhysicsCollider) {
-                return true;
-            }
-        }
-        
-        if (usePhysicsDetection) {
-            return hasPhysicsCollider;
-        }
-        
-        return false;
+        bool hasPhysicsCollider = Physics2D.OverlapPoint(worldMousePos, excludeFloorLayer) != null;
+        return hasPhysicsCollider;
     }
 
     private void SetClickThrough(bool clickThrough) {
