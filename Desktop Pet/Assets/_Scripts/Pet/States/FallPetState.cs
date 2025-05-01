@@ -35,6 +35,6 @@ public class FallPetState : PetBaseState
     }
 
     private bool Grounded() {
-        return Physics2D.Raycast(_transform.position, Vector2.down, 0.27f, floorMask);
+        return Physics2D.Raycast(_transform.position, Vector2.down, 0.51f, floorMask);
     }
 }
