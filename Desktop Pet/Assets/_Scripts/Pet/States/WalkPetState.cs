@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class WalkPetState : PetBaseState
 {
     [SerializeField] private Color color = Color.white;
+    [SerializeField] private Sprite sprite;
     [SerializeField] private Vector2 xConstraint;
     public Vector2 targetPosition;
     private float currSpeed;
@@ -19,7 +20,7 @@ public class WalkPetState : PetBaseState
         targetPosition = food?
                 new Vector2(food.transform.position.x, manager.transform.position.y) :
                 new Vector2(Random.Range(xConstraint.x, xConstraint.y), manager.transform.position.y);
-        manager.GetComponentInChildren<SpriteRenderer>().color = color;
+        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         Debug.Log("Pet is walking!");
 
     }

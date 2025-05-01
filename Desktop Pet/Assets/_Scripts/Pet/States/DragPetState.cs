@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragPetState : PetBaseState
 {
     [SerializeField] private Color color = Color.white;
+    [SerializeField] private Sprite sprite;
     [SerializeField] private Vector2 velClamp;
     
     private Rigidbody2D rb;
@@ -16,7 +17,7 @@ public class DragPetState : PetBaseState
     private float _currTime = 0;
     
     public override void EnterState(PetStateManager manager) {
-        manager.GetComponentInChildren<SpriteRenderer>().color = color;
+        manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         rb = manager.GetComponent<Rigidbody2D>();
         rb.linearVelocity = Vector2.zero;
         prevPos = manager.transform.position;
