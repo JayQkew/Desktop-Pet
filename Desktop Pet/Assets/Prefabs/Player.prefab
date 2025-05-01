@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632385190318434287}
-  - component: {fileID: 6934919383762052931}
-  - component: {fileID: 8257192842234227206}
   - component: {fileID: 3869757225744968699}
+  - component: {fileID: 8257192842234227206}
+  - component: {fileID: 462395150731585171}
+  - component: {fileID: 6934919383762052931}
   - component: {fileID: 3376484229567292772}
   m_Layer: 0
   m_Name: Player
@@ -36,6 +37,72 @@ Transform:
   - {fileID: 7378373080645077117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3869757225744968699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698592207461933761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d73dd0118c9f5246a14f1ae61732ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Grog
+  heldObject: {fileID: 0}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 224
+--- !u!114 &8257192842234227206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698592207461933761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4895a04eb208d64685dd72ca3790b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePos: {x: 0, y: 0}
+  leftClick: 0
+  rightClick: 0
+  onLeftDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onLeftHold:
+    m_PersistentCalls:
+      m_Calls: []
+  onLeftUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightHold:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightUp:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &462395150731585171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698592207461933761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58954ac73c5eeb46ba9da6dec50f3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  textbox: {fileID: 1725877765737927335}
 --- !u!114 &6934919383762052931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,55 +221,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8257192842234227206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698592207461933761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4895a04eb208d64685dd72ca3790b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0}
-  leftClick: 0
-  rightClick: 0
-  onLeftDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onLeftHold:
-    m_PersistentCalls:
-      m_Calls: []
-  onLeftUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightHold:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightUp:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3869757225744968699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698592207461933761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d73dd0118c9f5246a14f1ae61732ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heldObject: {fileID: 0}
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 224
 --- !u!114 &3376484229567292772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '**Freg**'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1557b934cd9e0ad47a19fbbfeaf75e19, type: 2}
   m_sharedMaterial: {fileID: -60485220478933567, guid: 1557b934cd9e0ad47a19fbbfeaf75e19, type: 2}

@@ -1,8 +1,12 @@
 using System;
+using Mirror;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
+    public string playerName;
+    [Space(10)]
+    private Textbox _textbox;
     private InputHandler _inputHandler;
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
@@ -11,6 +15,7 @@ public class Player : MonoBehaviour
 
     private void Awake() {
         _inputHandler = GetComponent<InputHandler>();
+        _textbox = GetComponent<Textbox>();
     }
 
     private void Start() {
@@ -21,6 +26,17 @@ public class Player : MonoBehaviour
         _inputHandler.onRightDown.AddListener(RightDown);
         _inputHandler.onRightHold.AddListener(RightHold);
         _inputHandler.onRightUp.AddListener(RightUp);
+    }
+
+    public override void OnStartClient() {
+        base.OnStartClient();
+        if(isLocalPlayer) CmdPlayerTextbox();
+        else _textbox.DisplayText(playerName);
+    }
+
+    [Command]
+    private void CmdPlayerTextbox() {
+        _textbox.ServerDisplayYou(connectionToClient);
     }
 
     private void LeftDown() {
