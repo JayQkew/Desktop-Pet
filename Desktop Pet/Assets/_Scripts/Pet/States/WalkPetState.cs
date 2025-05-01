@@ -8,6 +8,7 @@ public class WalkPetState : PetBaseState
     [SerializeField] private Sprite sprite;
     [SerializeField] private Vector2 xConstraint;
     private SpriteRenderer sr;
+    private Pet pet;
     public Vector2 targetPosition;
     private float currSpeed;
     [SerializeField] private float speed;
@@ -24,6 +25,8 @@ public class WalkPetState : PetBaseState
         // ??= checks if sr is null and if it is, assigns it a value
         sr ??= manager.GetComponentInChildren<SpriteRenderer>();
         sr.sprite = sprite;
+        
+        pet ??= manager.GetComponent<Pet>();
         Debug.Log("Pet is walking!");
 
     }
@@ -35,10 +38,10 @@ public class WalkPetState : PetBaseState
 
         Vector2 dir = targetPosition - (Vector2)manager.transform.position;
         
-        sr.flipX = dir.x != 0 ? dir.x < 0 : sr.flipX;
+        pet.CmdFlipSprite(dir.x != 0 ? dir.x < 0 : sr.flipX);
         
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
-            manager.SwitchState(food ? PetState.Eat : PetState.Idle);
+            manager.CmdSwitchState(food ? PetState.Eat : PetState.Idle);
         }
     }
 

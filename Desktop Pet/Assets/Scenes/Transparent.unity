@@ -852,7 +852,9 @@ MonoBehaviour:
   playerPrefab: {fileID: 698592207461933761, guid: 1f1160fc5e7d80c4786fbaa7982ae567, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 4240843960673816936, guid: 3daf600acfe3d924a99ed657779f2b77, type: 3}
+  - {fileID: 978910772060042069, guid: cb0454ed1beb9874899c1e4ea5c4eb92, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -926,8 +928,6 @@ MonoBehaviour:
   floorLayer:
     serializedVersion: 2
     m_Bits: 8
-  alphaThreshold: 0.00001
-  useAlphaDetection: 1
   usePhysicsDetection: 1
 --- !u!1 &1471895944
 GameObject:
@@ -1840,6 +1840,10 @@ PrefabInstance:
     - target: {fileID: 978910772060042069, guid: cb0454ed1beb9874899c1e4ea5c4eb92, type: 3}
       propertyPath: m_Name
       value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069124874490131267, guid: cb0454ed1beb9874899c1e4ea5c4eb92, type: 3}
+      propertyPath: sceneId
+      value: 1238159394
       objectReference: {fileID: 0}
     - target: {fileID: 6982886776956915672, guid: cb0454ed1beb9874899c1e4ea5c4eb92, type: 3}
       propertyPath: m_LocalPosition.x

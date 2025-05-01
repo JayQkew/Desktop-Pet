@@ -7,24 +7,26 @@ public class EatPetState : PetBaseState
 {
     [SerializeField] private Sprite sprite;
     public Food food;
+    private Pet pet;
     public override void EnterState(PetStateManager manager) {
         manager.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
-        food = manager.GetComponent<Pet>().targetFood.GetComponent<Food>();
+        pet ??= manager.GetComponent<Pet>();
+        food = pet.targetFood.GetComponent<Food>();
         manager.walkState.targetPosition = food.transform.position;
     }
 
     public override void UpdateState(PetStateManager manager) {
         food.foodAmount -= Time.deltaTime;
-        manager.GetComponent<Pet>().foodEaten += Time.deltaTime;
+        pet.foodEaten += Time.deltaTime;
         
         if(food.foodAmount <= 0) {
-            Object.Destroy(food.gameObject);
-            manager.SwitchState(PetState.Idle);
+            pet.CmdEatFood();
+            manager.CmdSwitchState(PetState.Idle);
         }
         
         Vector2 foodPos = food.transform.position;
         Vector2 foodPrevPos = manager.walkState.targetPosition;
-        if(Vector2.Distance(foodPos, foodPrevPos) > 0.1f) manager.SwitchState(PetState.Walk);
+        if(Vector2.Distance(foodPos, foodPrevPos) > 0.1f) manager.CmdSwitchState(PetState.Walk);
     }
 
     public override void ExitState(PetStateManager manager) {

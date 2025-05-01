@@ -20,7 +20,7 @@ public class FallPetState : PetBaseState
     public override void UpdateState(PetStateManager manager) {
         //do a ground check and velocity check
         if (Grounded() && rb.linearVelocity == Vector2.zero) {
-            manager.SwitchState(PetState.Idle);
+            manager.CmdSwitchState(PetState.Idle);
         }
 
         if (rb.linearVelocityY < 0) {

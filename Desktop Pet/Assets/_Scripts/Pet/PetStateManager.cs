@@ -28,12 +28,12 @@ public class PetStateManager : NetworkBehaviour
     }
 
     [Command]
-    public void SwitchState(PetState petState) {
-        ServerSwitchState(petState);
+    public void CmdSwitchState(PetState petState) {
+        RpcSwitchState(petState);
     }
     
     [ClientRpc]
-    public void ServerSwitchState(PetState newState) {
+    private void RpcSwitchState(PetState newState) {
         state = newState;
         currState.ExitState(this);
         switch (newState) {

@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 public class TransparentWindow : MonoBehaviour
 {
     [SerializeField] private LayerMask floorLayer;
-    [SerializeField] private float alphaThreshold = 0.1f; // Alpha threshold for click detection
-    [SerializeField] private bool useAlphaDetection = true; // Toggle for alpha-based click detection
     [SerializeField] private bool usePhysicsDetection = true; // Toggle for physics-based click detection
     
     private LayerMask excludeFloorLayer;
@@ -97,82 +95,20 @@ public class TransparentWindow : MonoBehaviour
 
     private bool ShouldBeClickable(Vector2 worldMousePos, Vector2 screenMousePos) {
         bool hasPhysicsCollider = false;
-        bool hasVisibleSprite = false;
         
         // Physics-based detection
         if (usePhysicsDetection) {
             hasPhysicsCollider = Physics2D.OverlapPoint(worldMousePos, excludeFloorLayer) != null;
-            if (hasPhysicsCollider && !useAlphaDetection) {
+            if (hasPhysicsCollider) {
                 return true;
             }
         }
         
-        // Alpha-based detection
-        if (useAlphaDetection) {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(worldMousePos, Vector2.zero);
-            
-            foreach (RaycastHit2D hit in hits) {
-                SpriteRenderer spriteRenderer = hit.collider.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null) {
-                    // Get the alpha value at the mouse position
-                    Color pixelColor = GetSpritePixelColor(spriteRenderer, worldMousePos);
-                    if (pixelColor.a > alphaThreshold) {
-                        hasVisibleSprite = true;
-                        break;
-                    }
-                }
-            }
-            
-            // If no sprites found with raycasts, try getting what's rendered at the screen position
-            if (!hasVisibleSprite) {
-                // Create a 1x1 texture to read the pixel
-                Texture2D tex = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-                // Read the pixel at the mouse position
-                tex.ReadPixels(new Rect(screenMousePos.x, screenMousePos.y, 1, 1), 0, 0);
-                tex.Apply();
-                Color pixel = tex.GetPixel(0, 0);
-                Destroy(tex);
-                
-                hasVisibleSprite = pixel.a > alphaThreshold;
-            }
-        }
-        
-        // Return true if either condition is met based on settings
-        if (usePhysicsDetection && useAlphaDetection) {
-            return hasPhysicsCollider && hasVisibleSprite;
-        }
-        else if (useAlphaDetection) {
-            return hasVisibleSprite;
-        }
-        else if (usePhysicsDetection) {
+        if (usePhysicsDetection) {
             return hasPhysicsCollider;
         }
         
         return false;
-    }
-    
-    private Color GetSpritePixelColor(SpriteRenderer spriteRenderer, Vector2 worldPos) {
-        // Convert world position to local sprite position
-        Vector3 localPos = spriteRenderer.transform.InverseTransformPoint(worldPos);
-        
-        // Get sprite bounds
-        Bounds bounds = spriteRenderer.sprite.bounds;
-        
-        // Calculate UV coordinates
-        float u = Mathf.InverseLerp(bounds.min.x, bounds.max.x, localPos.x);
-        float v = Mathf.InverseLerp(bounds.min.y, bounds.max.y, localPos.y);
-        
-        // Check if the point is inside the sprite
-        if (u >= 0 && u <= 1 && v >= 0 && v <= 1) {
-            // Get the pixel color at the UV position
-            Texture2D texture = spriteRenderer.sprite.texture;
-            int x = Mathf.FloorToInt(u * texture.width);
-            int y = Mathf.FloorToInt(v * texture.height);
-            
-            return texture.GetPixel(x, y);
-        }
-        
-        return Color.clear;
     }
 
     private void SetClickThrough(bool clickThrough) {

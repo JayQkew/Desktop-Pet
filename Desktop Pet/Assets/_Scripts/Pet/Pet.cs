@@ -1,11 +1,13 @@
 using System;
+using Mirror;
 using UnityEngine;
 
 [SelectionBase]
-public class Pet : MonoBehaviour, IInteractable
+public class Pet : NetworkBehaviour, IInteractable
 {
     private PetStateManager petStateManager;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     [Header("Poop")]
     [SerializeField] private GameObject poopPrefab;
@@ -21,38 +23,59 @@ public class Pet : MonoBehaviour, IInteractable
     private void Awake() {
         petStateManager = GetComponent<PetStateManager>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         poopCurrTime = poopTimer;
     }
 
     private void Update() {
+        if(!isServer) return;
+        
         if (foodEaten >= poopThreshold) {
             poopCurrTime -= Time.deltaTime;
             if (poopCurrTime <= 0) {
-                Poop();
+                CmdSpawnPoop();
                 poopCurrTime = poopTimer;
                 foodEaten -= poopThreshold;
             }
         }
     }
-
-    private void Poop() {
-        GameObject poop = Instantiate(poopPrefab, transform.position, Quaternion.identity);
+    
+    [Server]
+    private void SpawnPoop() {
+        GameObject poop =  Instantiate(poopPrefab, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(poop);
         Rigidbody2D poopRb = poop.GetComponent<Rigidbody2D>();
         poopRb.AddForce(Vector2.up * poopForce, ForceMode2D.Impulse);
     }
 
+    [Command(requiresAuthority = false)]
+    private void CmdSpawnPoop() => SpawnPoop();
+
     public void Food(GameObject food) {
         targetFood = food;
-        petStateManager.SwitchState(PetState.Walk);
+        petStateManager.CmdSwitchState(PetState.Walk);
     }
+    
+    [Command]
+    public void CmdEatFood() => RpcEatFood();
 
+    [ClientRpc]
+    private void RpcEatFood() => Destroy(targetFood);
+
+    [Command]
+    public void CmdFlipSprite(bool flip) => RpcFlipSprite(flip);
+
+    [ClientRpc]
+    private void RpcFlipSprite(bool flip) {
+        sr.flipX = flip;
+    }
     public void OnLeftPickup() {
-        petStateManager.SwitchState(PetState.Drag);
+        petStateManager.CmdSwitchState(PetState.Drag);
         Debug.Log("Pet picked up");
     }
 
     public void OnLeftDrop() {
-        petStateManager.SwitchState(PetState.Fall);
+        petStateManager.CmdSwitchState(PetState.Fall);
         Debug.Log("Pet dropped");
     }
 
@@ -63,12 +86,12 @@ public class Pet : MonoBehaviour, IInteractable
     }
 
     public void OnRightPickup() {
-        petStateManager.SwitchState(PetState.Pet);
+        petStateManager.CmdSwitchState(PetState.Pet);
     }
 
     public void OnRightDrop() {
         // after a long petting session, the frog falls asleep
-        petStateManager.SwitchState(PetState.Sleep);
+        petStateManager.CmdSwitchState(PetState.Sleep);
     }
 
     public void OnRightHeld(Vector2 offset) {
