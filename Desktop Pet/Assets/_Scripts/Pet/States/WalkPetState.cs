@@ -35,7 +35,7 @@ public class WalkPetState : PetBaseState
 
         Vector2 dir = targetPosition - (Vector2)manager.transform.position;
         
-        sr.flipX = dir.x < 0;
+        sr.flipX = dir.x != 0 ? dir.x < 0 : sr.flipX;
         
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
             manager.SwitchState(food ? PetState.Eat : PetState.Idle);
