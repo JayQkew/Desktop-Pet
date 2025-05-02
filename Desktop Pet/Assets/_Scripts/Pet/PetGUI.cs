@@ -9,8 +9,5 @@ public class PetGUI : MonoBehaviour
         _anim = GetComponent<Animator>();
     }
 
-    public void SetAnim(PetState state) {
-        Debug.Log("set anim to " + state);
-        _anim.SetInteger("State", (int)state);
-    }
+    public void SetAnim(PetState state) => _anim.SetInteger("State", (int)state);
 }
