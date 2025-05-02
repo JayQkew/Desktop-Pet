@@ -1,6 +1,7 @@
 using System;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : NetworkBehaviour
 {
@@ -9,18 +10,19 @@ public class Player : NetworkBehaviour
 
     [Space(10)]
     private GameObject _pet;
-    private Textbox _textbox;
+    public Textbox textbox;
     private InputHandler _inputHandler;
-    [SerializeField] private GameObject[] hoverObjects = Array.Empty<GameObject>();
+    // [SerializeField] private GameObject[] hoverObjects = Array.Empty<GameObject>();
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private LayerMask hoverLayer;
     private Vector2 offset;
 
     private void Awake() {
         _pet = transform.GetChild(0).gameObject;
         _inputHandler = GetComponent<InputHandler>();
-        _textbox = GetComponent<Textbox>();
+        textbox = GetComponent<Textbox>();
     }
 
     private void Start() {
@@ -34,58 +36,58 @@ public class Player : NetworkBehaviour
     }
 
     private void Update() {
-        Hover();
+        CmdCheckHover();
     }
 
     public override void OnStartClient() {
         base.OnStartClient();
         if(isLocalPlayer) CmdDisplayYou();
-        else _textbox.DisplayText("");
+        else textbox.DisplayText("");
     }
 
     [Command]
     private void CmdDisplayYou() {
-        _textbox.ServerDisplayYou();
+        textbox.ServerDisplayYou();
     }
     
     private void Hover() {
-        //on the client, this is always empty
-        Collider2D[] hit = Physics2D.OverlapPointAll(_inputHandler.mousePos, interactableLayer);
-
-        if (hit.Length == 0) {
-            Debug.Log(gameObject.name + " is not Hovering");
-            CmdDisplayYou();
-            hoverObjects = Array.Empty<GameObject>();
-            return;
-        }
+        if(!isLocalPlayer) return;
         
-        GameObject[] hitGameObjects = new GameObject[hit.Length];
-        for (int i = 0; i < hit.Length; i++) {
-            hitGameObjects[i] = hit[i].gameObject;
-            Player hitPlayer = hitGameObjects[i].GetComponentInParent<Player>();
-
-            if (hitPlayer == null) continue;
-            
-            if (hitGameObjects[i] == hitPlayer.transform.GetChild(0).gameObject) {
-                CmdPetDisplay(hitPlayer.netId);
-            }
-        }
-
-        hoverObjects = hitGameObjects;
+        CmdCheckHover();
     }
 
     [Command]
-    private void CmdPetDisplay(uint playerNetId) {
-        if (NetworkServer.spawned.TryGetValue(playerNetId, out NetworkIdentity identity)) {
-            Player petOwner = identity.GetComponent<Player>();
-            if (petOwner != null) {
-                if (isLocalPlayer) {
-                    petOwner._textbox.ServerOwnPet(playerName);
-                } else {
-                    petOwner._textbox.ServerOtherPet(petOwner.playerName);
-                }
-            }
+    private void CmdCheckHover() {
+        Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, hoverLayer);
+
+        if(hit == null) {
+            textbox.ServerDisplayYou();
+            return;
         }
+        
+        GameObject hitGameObject = hit.gameObject;
+        Player hitPlayer = hitGameObject.GetComponentInParent<Player>();
+
+        if (hitGameObject == transform.GetChild(0).gameObject) {
+            if(isLocalPlayer) textbox.ServerOwnPet(playerName);
+            else hitPlayer.textbox.ServerOtherPet(hitPlayer.playerName);
+        }
+        else  hitPlayer.textbox.ServerOtherPet(hitPlayer.playerName);
+        
+        // GameObject[] hitGameObjects = new GameObject[hit.Length];
+        // for (int i = 0; i < hit.Length; i++) {
+        //
+        //     if (hitPlayer == null) continue;
+        //     
+        //     if (hitGameObject == hitPlayer.transform.GetChild(0).gameObject) {
+        //         if (isLocalPlayer) {
+        //             hitPlayer._textbox.ServerOwnPet(playerName);
+        //         }
+        //         else {
+        //             hitPlayer._textbox.ServerOtherPet(hitPlayer.playerName);
+        //         }
+        //     }
+        // }
     }
 
     private void LeftDown() {

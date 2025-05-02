@@ -49,11 +49,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d73dd0118c9f5246a14f1ae61732ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   playerName: Grog
+  textbox: {fileID: 0}
   heldObject: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
     m_Bits: 224
+  hoverLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &8257192842234227206
 MonoBehaviour:
   m_ObjectHideFlags: 0
