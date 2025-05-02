@@ -574,6 +574,9 @@ MonoBehaviour:
     timeConstraint: {x: 2, y: 3}
   dragState:
     velClamp: {x: 10, y: 10}
+  petState:
+    minPetTime: 5
+    currTime: 0
   eatState:
     food: {fileID: 0}
   fallState:

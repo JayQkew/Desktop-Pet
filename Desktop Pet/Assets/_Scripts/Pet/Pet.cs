@@ -88,7 +88,7 @@ public class Pet : NetworkBehaviour, IInteractable
 
     public void OnRightDrop() {
         // after a long petting session, the frog falls asleep
-        _petStateManager.CmdSwitchState(PetState.Sleep);
+        _petStateManager.petState.OnDrop(_petStateManager);
     }
 
     public void OnRightHeld(Vector2 offset) {
