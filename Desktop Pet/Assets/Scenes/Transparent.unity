@@ -672,8 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorLayer:
     serializedVersion: 2
-    m_Bits: 8
-  usePhysicsDetection: 1
+    m_Bits: 0
 --- !u!1 &1471895944
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Work
+  m_Name: working
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a4e2653e0125e6a44b04684b46f69d22, type: 2}
+  m_Motion: {fileID: 7400000, guid: 21713a32d5988994787ad2cb072e0312, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -134,7 +134,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pet
+  m_Name: petting
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -147,7 +147,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b6a7f1006d2357443974c24fd2e7d877, type: 2}
+  m_Motion: {fileID: 7400000, guid: bfbfe8dd8d48dc14897c270173ea9deb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -345,7 +345,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Eat
+  m_Name: munching
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -358,7 +358,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9a0b1cb3fbfb9c149956f7eca7e6c118, type: 2}
+  m_Motion: {fileID: 7400000, guid: fa3a87aa47e0bc44b8c7c9f33fa91a2d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -396,7 +396,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walk
+  m_Name: walking
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -409,7 +409,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f1f5a84e575e0434bb49a4a6157a26f2, type: 2}
+  m_Motion: {fileID: 7400000, guid: c4f182c0a12e0454384bd8138d590878, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -422,7 +422,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -435,7 +435,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f856c860446b9b244bf506556a3b9c63, type: 2}
+  m_Motion: {fileID: 7400000, guid: 10923a452f4dbb641a401c6b69155cc9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -473,7 +473,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sleep
+  m_Name: sleeping
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -486,7 +486,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 48e73b1f30b4e9543a01a8174b69013d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0546928925865f04bad69e67c47e24d2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
