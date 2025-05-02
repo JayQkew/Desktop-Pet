@@ -25,7 +25,6 @@ public class WalkPetState : PetBaseState
         sr ??= manager.GetComponentInChildren<SpriteRenderer>();
         
         pet ??= manager.GetComponent<Pet>();
-        Debug.Log("Pet is walking!");
 
     }
 

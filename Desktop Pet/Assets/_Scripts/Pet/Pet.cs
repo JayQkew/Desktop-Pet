@@ -5,9 +5,9 @@ using UnityEngine;
 [SelectionBase]
 public class Pet : NetworkBehaviour, IInteractable
 {
-    private PetStateManager petStateManager;
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
+    private PetStateManager _petStateManager;
+    private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
 
     [Header("Poop")]
     [SerializeField] private GameObject poopPrefab;
@@ -21,9 +21,9 @@ public class Pet : NetworkBehaviour, IInteractable
     public float poopThreshold;
 
     private void Awake() {
-        petStateManager = GetComponent<PetStateManager>();
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponentInChildren<SpriteRenderer>();
+        _petStateManager = GetComponent<PetStateManager>();
+        _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
         poopCurrTime = poopTimer;
     }
 
@@ -53,7 +53,7 @@ public class Pet : NetworkBehaviour, IInteractable
 
     public void Food(GameObject food) {
         targetFood = food;
-        petStateManager.CmdSwitchState(PetState.Walk);
+        _petStateManager.CmdSwitchState(PetState.Walk);
     }
     
     [Command]
@@ -67,31 +67,28 @@ public class Pet : NetworkBehaviour, IInteractable
 
     [ClientRpc]
     private void RpcFlipSprite(bool flip) {
-        sr.flipX = flip;
+        _sr.flipX = flip;
     }
     public void OnLeftPickup() {
-        petStateManager.CmdSwitchState(PetState.Drag);
-        Debug.Log("Pet picked up");
+        _petStateManager.CmdSwitchState(PetState.Drag);
     }
 
     public void OnLeftDrop() {
-        petStateManager.CmdSwitchState(PetState.Fall);
-        Debug.Log("Pet dropped");
+        _petStateManager.CmdSwitchState(PetState.Fall);
     }
 
     public void OnLeftHeld(Vector2 offset) {
         // transform.position = offset;
-        rb.MovePosition(offset);
-        Debug.Log("Pet held");
+        _rb.MovePosition(offset);
     }
 
     public void OnRightPickup() {
-        petStateManager.CmdSwitchState(PetState.Pet);
+        _petStateManager.CmdSwitchState(PetState.Pet);
     }
 
     public void OnRightDrop() {
         // after a long petting session, the frog falls asleep
-        petStateManager.CmdSwitchState(PetState.Sleep);
+        _petStateManager.CmdSwitchState(PetState.Sleep);
     }
 
     public void OnRightHeld(Vector2 offset) {

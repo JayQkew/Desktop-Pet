@@ -28,6 +28,5 @@ public class EatPetState : PetBaseState
     }
 
     public override void ExitState(PetStateManager manager) {
-        Debug.Log("Pet is full!");
     }
 }
