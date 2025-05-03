@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using TMPro;
 
 namespace Mirror.Examples.Common
 {
@@ -19,7 +20,7 @@ namespace Mirror.Examples.Common
         [SerializeField] private Button mainStopButton;
         [SerializeField] private Text mainStopButtonText;
         [SerializeField] private Button secondaryStopButton;
-        [SerializeField] private Text statusText;
+        [SerializeField] private TextMeshProUGUI statusText;
 
         [SerializeField] private InputField inputNetworkAddress;
         [SerializeField] private InputField inputPort;
