@@ -132,7 +132,6 @@ public class FarmSatateManager : MonoBehaviour
                     currentTimerArmController = timerArmInstance.GetComponent<TimerArmController>();
                     if (currentTimerArmController != null)
                     {
-                        //currentTimerArmController.SetPlantType(plantType);
                         currentTimerArmController.SetFarmState(farmState);
                     }
                     else
@@ -162,7 +161,7 @@ public class FarmSatateManager : MonoBehaviour
     {
         if (farmState == FarmState.Finished)
         {
-            // Give the player plants (you'll need to implement your inventory/resource system here)
+            // Give the player plants
             Debug.Log("Harvested " + plantType);
 
             farmState = FarmState.Empty;
@@ -173,23 +172,13 @@ public class FarmSatateManager : MonoBehaviour
             if (currentTimerArmController != null)
             {
                 currentTimerArmController.SetFarmState(farmState);
-                //currentTimerArmController.SetPlantType(plantType);
             }
-
-            // Optionally destroy the farm instance if it's a one-time harvest
-            // if (currentFarmInstance != null)
-            // {
-            //     Destroy(currentFarmInstance);
-            //     currentFarmInstance = null;
-            //     currentTimerArmController = null;
-            // }
 
             UpdateFarmState();
         }
         else if (farmState == FarmState.Rotten)
         {
             Debug.Log("Crop is rotten. Cannot harvest.");
-            // Optionally reset the farm state to empty
             farmState = FarmState.Empty;
             plantType = PlantType.None;
             currentTimer = 0f;
@@ -197,7 +186,6 @@ public class FarmSatateManager : MonoBehaviour
             if (currentTimerArmController != null)
             {
                 currentTimerArmController.SetFarmState(farmState);
-                //currentTimerArmController.SetPlantType(plantType);
             }
             UpdateFarmState();
         }

@@ -44,10 +44,4 @@ public class TimerArmController : MonoBehaviour
             }
         }
     }
-
-   // public void SetPlantType(FarmSatateManager.FarmState.PlantType type)
-   // {
-        // If you have different sprites later, handle them here
-        // switch (type) { ... }
-    // }
 }

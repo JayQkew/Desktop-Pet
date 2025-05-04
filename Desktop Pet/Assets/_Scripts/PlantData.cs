@@ -5,5 +5,5 @@ public class PlantData : ScriptableObject
 {
     public string plantName;
     public float growthTimeSeconds;
-    // Add other plant-specific data like harvest yield, etc.
+    // Add other plant-specific data like money earned.
 }
