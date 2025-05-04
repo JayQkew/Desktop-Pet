@@ -1,6 +1,7 @@
 using System;
 using Mirror;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Serialization;
 
 public class Player : NetworkBehaviour
@@ -12,7 +13,8 @@ public class Player : NetworkBehaviour
     private GameObject _pet;
     public Textbox textbox;
     private InputHandler _inputHandler;
-    // [SerializeField] private GameObject[] hoverObjects = Array.Empty<GameObject>();
+    public TMP_InputField inputField;
+    private bool _methodSubscribed;
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
     [SerializeField] private LayerMask interactableLayer;
@@ -35,12 +37,30 @@ public class Player : NetworkBehaviour
         _inputHandler.onRightUp.AddListener(RightUp);
     }
 
+    private void Update() {
+        if (inputField != null && !_methodSubscribed) {
+            inputField.onValueChanged.AddListener(NameChange);
+            _methodSubscribed = true;
+        }
+    }
 
     public override void OnStartClient() {
         base.OnStartClient();
         if(isServer) textbox.ServerDisplayYou(playerName);
         else if(isLocalPlayer) textbox.DisplayYou(playerName);
         else textbox.DisplayText("");
+    }
+
+    private void NameChange(string newName) {
+        if (newName.Length <= 4) {
+            playerName = newName;
+        }
+        else {
+            inputField.text = newName.Substring(0, 4);
+        }
+        
+        if(isServer) textbox.ServerDisplayYou(playerName);
+        else if(isLocalPlayer) textbox.DisplayYou(playerName);
     }
 
     private void LeftDown() {

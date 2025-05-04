@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3376484229567292772}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,8 +52,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerName: Grog
+  playerName: Freg
   textbox: {fileID: 0}
+  inputField: {fileID: 0}
   heldObject: {fileID: 0}
   interactableLayer:
     serializedVersion: 2

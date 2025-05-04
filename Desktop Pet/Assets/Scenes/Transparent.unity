@@ -3508,7 +3508,7 @@ GameObject:
   - component: {fileID: 756793804}
   m_Layer: 5
   m_Name: Name
-  m_TagString: Untagged
+  m_TagString: NameInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5117,6 +5117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6855c3cb779e48149b63a5d86db8fbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputField: {fileID: 756793804}
 --- !u!114 &1251282356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8953,6 +8954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6855c3cb779e48149b63a5d86db8fbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
 --- !u!114 &1861969211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9832,6 +9834,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1251282355}
+        m_TargetAssemblyTypeName: GeneralUX, Assembly-CSharp
+        m_MethodName: SetInputField
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
