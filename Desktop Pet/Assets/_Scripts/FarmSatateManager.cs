@@ -12,7 +12,8 @@ public class FarmSatateManager : MonoBehaviour
     [Header("Farm State")]
     public FarmState farmState = FarmState.Empty;
     public PlantType plantType = PlantType.None;
-    [SerializeField]private float currentTimer = 0f;
+    [SerializeField]private float currentTimer = 0f;   
+    [SerializeField] private float plantingTime = 5f;
     [SerializeField]private float growingTime = 0f;
     [SerializeField]private float finishedTime = 5f; // Example time before rotting
 
@@ -29,7 +30,8 @@ public class FarmSatateManager : MonoBehaviour
         Growing,
         Finished,
         Rotten,
-        Harvested
+        Harvested,
+        Planted
     }
 
     public enum PlantType
@@ -47,7 +49,17 @@ public class FarmSatateManager : MonoBehaviour
 
     private void Update()
     {
-        if (farmState == FarmState.Growing)
+        if (farmState == FarmState.Planted)
+        {
+            currentTimer += Time.deltaTime;
+            if (currentTimer >= plantingTime)
+            {
+                farmState = FarmState.Finished;
+                currentTimer = 0f;
+                UpdateFarmState();
+            }
+        }
+        else if (farmState == FarmState.Growing)
         {
             currentTimer += Time.deltaTime;
             if (currentTimer >= growingTime)
@@ -80,6 +92,9 @@ public class FarmSatateManager : MonoBehaviour
             case FarmState.Empty:
                 // In TimerArmController
                 break;
+            case FarmState.Planted:
+                // In TimerArmController, handle visual progression
+                break;
             case FarmState.Growing:
                 // In TimerArmController, handle visual progression
                 break;
@@ -97,20 +112,35 @@ public class FarmSatateManager : MonoBehaviour
 
     public void PlantShort()
     {
-        PlantCrop(PlantType.ShortFlower, shortPlantData.growthTimeSeconds);
+        PlantCrop(PlantType.ShortFlower, 
+            shortPlantData.growthTimeSeconds,
+            shortPlantData.planted,
+            shortPlantData.growing, 
+            shortPlantData.finished, 
+            shortPlantData.rotten);
     }
 
     public void PlantMedium()
     {
-        PlantCrop(PlantType.MediumFlower, mediumPlantData.growthTimeSeconds);
+        PlantCrop(PlantType.MediumFlower, 
+            mediumPlantData.growthTimeSeconds,
+            mediumPlantData.planted,
+            mediumPlantData.growing, 
+            mediumPlantData.finished, 
+            mediumPlantData.rotten);    
     }
 
     public void PlantLong()
     {
-        PlantCrop(PlantType.LongFlower, longPlantData.growthTimeSeconds);
+        PlantCrop(PlantType.LongFlower, 
+            longPlantData.growthTimeSeconds,
+            longPlantData.planted,
+            longPlantData.growing, 
+            longPlantData.finished, 
+            longPlantData.rotten);
     }
 
-    private void PlantCrop(PlantType type, float growthTime)
+    private void PlantCrop(PlantType type, float growthTime, Sprite planted, Sprite growing, Sprite finished, Sprite rotten)
     {
         if (farmState == FarmState.Empty)
         {
@@ -129,6 +159,10 @@ public class FarmSatateManager : MonoBehaviour
                 if (timerArmPrefab != null && currentFarmInstance != null)
                 {
                     GameObject timerArmInstance = Instantiate(timerArmPrefab, currentFarmInstance.transform.position, Quaternion.identity, currentFarmInstance.transform);
+                    timerArmInstance.GetComponent<TimerArmController>().planted = planted;
+                    timerArmInstance.GetComponent<TimerArmController>().growing = growing;
+                    timerArmInstance.GetComponent<TimerArmController>().finished = finished;
+                    timerArmInstance.GetComponent<TimerArmController>().rotten = rotten;
                     currentTimerArmController = timerArmInstance.GetComponent<TimerArmController>();
                     if (currentTimerArmController != null)
                     {

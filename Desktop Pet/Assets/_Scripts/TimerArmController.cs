@@ -6,6 +6,7 @@ public class TimerArmController : MonoBehaviour
     public SpriteRenderer plantSpriteRenderer; // Assign the sprite renderer
 
     [Header("Plant Scriptable Objects")] 
+    public Sprite planted;
     public Sprite growing;
     public Sprite finished;
     public Sprite rotten;
@@ -20,9 +21,14 @@ public class TimerArmController : MonoBehaviour
                     plantSpriteRenderer.enabled = false;
                     if (timerArm != null) timerArm.gameObject.SetActive(false);
                     break;
-                case FarmSatateManager.FarmState.Growing:
+                case FarmSatateManager.FarmState.Planted:
                     plantSpriteRenderer.enabled = true;
                     if (timerArm != null) timerArm.gameObject.SetActive(true);
+                    plantSpriteRenderer.sprite = planted;
+                    Debug.Log(planted);
+                    Debug.Log(plantSpriteRenderer.sprite);
+                    break;
+                case FarmSatateManager.FarmState.Growing:
                     plantSpriteRenderer.sprite = growing;
                     Debug.Log(growing);
                     Debug.Log(plantSpriteRenderer.sprite);
