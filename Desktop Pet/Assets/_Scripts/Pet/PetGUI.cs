@@ -11,6 +11,4 @@ public class PetGUI : MonoBehaviour
     }
 
     public void SetAnim(PetState state) => _anim.SetInteger("State", (int)state);
-    
-    public void GoIdleAfterAnim() => _anim.SetInteger("State", (int)PetState.Idle);
 }
