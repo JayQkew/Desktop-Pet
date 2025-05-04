@@ -55,6 +55,7 @@ MonoBehaviour:
   playerName: Freg
   textbox: {fileID: 0}
   inputField: {fileID: 0}
+  gameButtonText: {fileID: 0}
   heldObject: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
@@ -620,7 +621,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.15}
   m_Radius: 0.25
 --- !u!50 &479375080229714938
 Rigidbody2D:
