@@ -7,10 +7,10 @@ public class Textbox : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI textbox;
 
     [Server]
-    public void ServerDisplayYou() => DisplayYou();
+    public void ServerDisplayYou(string playerName) => DisplayYou(playerName);
     
     [TargetRpc]
-    public void DisplayYou() => textbox.text = "*";
+    public void DisplayYou(string playerName) => textbox.text = playerName;
 
     [Server]
     public void ServerOwnPet(string petName) => DisplayOwnPet(petName);

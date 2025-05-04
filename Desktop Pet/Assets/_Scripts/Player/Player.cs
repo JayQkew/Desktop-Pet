@@ -35,41 +35,13 @@ public class Player : NetworkBehaviour
         _inputHandler.onRightUp.AddListener(RightUp);
     }
 
-    private void Update() {
-        if(isServer) ServerHover();
-        else if(isLocalPlayer) Hover();
-    }
 
     public override void OnStartClient() {
         base.OnStartClient();
-        if(isServer) textbox.ServerDisplayYou();
-        else if(isLocalPlayer) textbox.DisplayYou();
+        if(isServer) textbox.ServerDisplayYou(playerName);
+        else if(isLocalPlayer) textbox.DisplayYou(playerName);
         else textbox.DisplayText("");
     }
-    
-    [TargetRpc]
-    private void Hover() {
-        Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, hoverLayer);
-
-        if (hit == null) {
-            if(isServer) textbox.ServerDisplayYou();
-            else if(isLocalPlayer) textbox.DisplayYou();
-            return;
-        }
-        
-        GameObject hitObject = hit.gameObject;
-        if (hitObject == _pet) {
-            if(isServer) textbox.ServerOwnPet(playerName);
-            else if (isLocalPlayer) textbox.DisplayOwnPet(playerName);
-        }
-        else {
-            if(isServer) textbox.ServerOtherPet(playerName);
-            else if (isLocalPlayer) textbox.DisplayOtherPet(playerName);
-        }
-    }
-
-    [Server]
-    private void ServerHover() => Hover();
 
     private void LeftDown() {
         Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, interactableLayer);
