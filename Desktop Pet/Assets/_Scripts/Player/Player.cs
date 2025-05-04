@@ -36,59 +36,40 @@ public class Player : NetworkBehaviour
     }
 
     private void Update() {
-        CmdCheckHover();
+        if(isServer) ServerHover();
+        else if(isLocalPlayer) Hover();
     }
 
     public override void OnStartClient() {
         base.OnStartClient();
-        if(isLocalPlayer) CmdDisplayYou();
+        if(isServer) textbox.ServerDisplayYou();
+        else if(isLocalPlayer) textbox.DisplayYou();
         else textbox.DisplayText("");
     }
-
-    [Command]
-    private void CmdDisplayYou() {
-        textbox.ServerDisplayYou();
-    }
     
+    [TargetRpc]
     private void Hover() {
-        if(!isLocalPlayer) return;
-        
-        CmdCheckHover();
-    }
-
-    [Command]
-    private void CmdCheckHover() {
         Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, hoverLayer);
 
-        if(hit == null) {
-            textbox.ServerDisplayYou();
+        if (hit == null) {
+            if(isServer) textbox.ServerDisplayYou();
+            else if(isLocalPlayer) textbox.DisplayYou();
             return;
         }
         
-        GameObject hitGameObject = hit.gameObject;
-        Player hitPlayer = hitGameObject.GetComponentInParent<Player>();
-
-        if (hitGameObject == transform.GetChild(0).gameObject) {
-            if(isLocalPlayer) textbox.ServerOwnPet(playerName);
-            else hitPlayer.textbox.ServerOtherPet(hitPlayer.playerName);
+        GameObject hitObject = hit.gameObject;
+        if (hitObject == _pet) {
+            if(isServer) textbox.ServerOwnPet(playerName);
+            else if (isLocalPlayer) textbox.DisplayOwnPet(playerName);
         }
-        else  hitPlayer.textbox.ServerOtherPet(hitPlayer.playerName);
-        
-        // GameObject[] hitGameObjects = new GameObject[hit.Length];
-        // for (int i = 0; i < hit.Length; i++) {
-        //
-        //     if (hitPlayer == null) continue;
-        //     
-        //     if (hitGameObject == hitPlayer.transform.GetChild(0).gameObject) {
-        //         if (isLocalPlayer) {
-        //             hitPlayer._textbox.ServerOwnPet(playerName);
-        //         }
-        //         else {
-        //             hitPlayer._textbox.ServerOtherPet(hitPlayer.playerName);
-        //         }
-        //     }
-        // }
+        else {
+            if(isServer) textbox.ServerOtherPet(playerName);
+            else if (isLocalPlayer) textbox.DisplayOtherPet(playerName);
+        }
     }
+
+    [Server]
+    private void ServerHover() => Hover();
 
     private void LeftDown() {
         Collider2D hit = Physics2D.OverlapPoint(_inputHandler.mousePos, interactableLayer);
