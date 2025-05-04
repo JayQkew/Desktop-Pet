@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 454557093466349121}
   - component: {fileID: 1066728915949166532}
   - component: {fileID: 71105036458081460}
+  - component: {fileID: -7504618162449664279}
   m_Layer: 0
   m_Name: TimerArm
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerArm: {fileID: 454557093466349121}
   plantSpriteRenderer: {fileID: 71105036458081460}
+  planted: {fileID: 0}
   growing: {fileID: 3573036208370857778, guid: 967111265ed507b419d879ca5e1f5a60, type: 3}
   finished: {fileID: -4987337320017983735, guid: 1b77ff9a1d55aba4b8aebc88c33e5f95, type: 3}
   rotten: {fileID: 6286595657586805340, guid: 6cd7b6344231a60408fe5dfd50504206, type: 3}
@@ -105,3 +107,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7504618162449664279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649732379555613689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 341813048
+  serverOnly: 0
+  visibility: 2
+  hasSpawned: 0
