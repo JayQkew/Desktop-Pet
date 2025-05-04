@@ -4669,7 +4669,7 @@ GameObject:
   - component: {fileID: 1087437872}
   - component: {fileID: 1087437871}
   m_Layer: 5
-  m_Name: Freg the Frog
+  m_Name: name the Frog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5118,6 +5118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 756793804}
+  gameButtonText: {fileID: 1087437871}
 --- !u!114 &1251282356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8955,6 +8956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 0}
+  gameButtonText: {fileID: 0}
 --- !u!114 &1861969211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9845,6 +9847,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1251282355}
         m_TargetAssemblyTypeName: GeneralUX, Assembly-CSharp
         m_MethodName: SetInputField
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1251282355}
+        m_TargetAssemblyTypeName: GeneralUX, Assembly-CSharp
+        m_MethodName: SetButtonName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
