@@ -57,10 +57,10 @@ public class Pet : NetworkBehaviour, IInteractable
     }
     
     [Command]
-    public void CmdEatFood() => RpcEatFood();
+    public void CmdDestroyItem() => RpcDestroyItem();
 
     [ClientRpc]
-    private void RpcEatFood() => Destroy(targetFood);
+    private void RpcDestroyItem() => Destroy(targetFood);
 
     [Command]
     public void CmdFlipSprite(bool flip) => RpcFlipSprite(flip);

@@ -569,8 +569,8 @@ MonoBehaviour:
     xConstraint: {x: -8.25, y: 8.25}
     targetPosition: {x: 0, y: 0}
     speed: 5
-    foodSpeed: 2.5
-    food: {fileID: 0}
+    targetItemSpeed: 2.5
+    targetItem: {fileID: 0}
   sleepState:
     currTime: 0
     timeConstraint: {x: 2, y: 3}
@@ -581,6 +581,8 @@ MonoBehaviour:
     currTime: 0
   eatState:
     food: {fileID: 0}
+  plantState:
+    plant: {fileID: 0}
   fallState:
     floorMask:
       serializedVersion: 2

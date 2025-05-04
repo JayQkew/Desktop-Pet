@@ -18,7 +18,7 @@ public class EatPetState : PetBaseState
         pet.foodEaten += Time.deltaTime;
         
         if(food.foodAmount <= 0) {
-            pet.CmdEatFood();
+            pet.CmdDestroyItem();
             manager.CmdSwitchState(PetState.Idle);
         }
         

@@ -80,15 +80,15 @@ public class PetStateManager : NetworkBehaviour
 
 public enum PetState
 {
-    Idle,
-    Walk,
-    Sleep,
-    Drag,
-    Pet,
-    Work,
-    Eat,
-    Plant,
-    Fall
+    Idle = 0,
+    Walk = 1,
+    Sleep = 2,
+    Drag = 3,
+    Pet = 4,
+    Work = 5,
+    Eat = 6,
+    Plant = 7,
+    Fall = 8
 }
 
 public abstract class PetBaseState

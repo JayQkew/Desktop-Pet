@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -11,34 +12,48 @@ public class WalkPetState : PetBaseState
     public Vector2 targetPosition;
     private float currSpeed;
     [SerializeField] private float speed;
-    [SerializeField] private float foodSpeed;
-    [SerializeField] private GameObject food;
+    [SerializeField] private float targetItemSpeed;
+    [SerializeField] private GameObject targetItem;
+
     public override void EnterState(PetStateManager manager) {
         //generate a random target position
-        food = manager.GetComponent<Pet>().targetFood;
+        targetItem = manager.GetComponent<Pet>().targetFood;
 
-        targetPosition = food?
-                new Vector2(food.transform.position.x, manager.transform.position.y) :
-                new Vector2(Random.Range(xConstraint.x, xConstraint.y), manager.transform.position.y);
+        targetPosition = targetItem
+            ? new Vector2(targetItem.transform.position.x, manager.transform.position.y)
+            : new Vector2(Random.Range(xConstraint.x, xConstraint.y), manager.transform.position.y);
 
         // ??= checks if sr is null and if it is, assigns it a value
         sr ??= manager.GetComponentInChildren<SpriteRenderer>();
-        
-        pet ??= manager.GetComponent<Pet>();
 
+        pet ??= manager.GetComponent<Pet>();
     }
 
     public override void UpdateState(PetStateManager manager) {
-        if(food) targetPosition = new Vector3(food.transform.position.x, manager.transform.position.y);
-        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x, food ? Time.deltaTime * foodSpeed : Time.deltaTime);
+        if (targetItem) targetPosition = new Vector3(targetItem.transform.position.x, manager.transform.position.y);
+        float xPos = Mathf.MoveTowards(manager.transform.position.x, targetPosition.x,
+            targetItem ? Time.deltaTime * targetItemSpeed : Time.deltaTime);
         manager.transform.position = new Vector3(xPos, manager.transform.position.y, manager.transform.position.z);
 
         Vector2 dir = targetPosition - (Vector2)manager.transform.position;
-        
+
         pet.CmdFlipSprite(dir.x != 0 ? dir.x < 0 : sr.flipX);
-        
+
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
-            manager.CmdSwitchState(food ? PetState.Eat : PetState.Idle);
+            PetState newState = PetState.Idle;
+
+            if (targetItem) {
+                if (targetItem.GetComponent<Food>() != null) {
+                    Debug.Log("Here Eat");
+                    newState = PetState.Eat;
+                }
+                else if (targetItem.GetComponent<Plant>() != null) {
+                    Debug.Log("Here Plant");
+                    newState = PetState.Plant;
+                }
+            }
+            
+            manager.CmdSwitchState(newState);
         }
     }
 

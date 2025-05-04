@@ -6,7 +6,7 @@ public class Plant : MonoBehaviour, IInteractable
     [SerializeField] private float radius;
     [SerializeField] private LayerMask petLayer;
     [SerializeField] private Vector2 velClamp;
-
+    public bool canInteract;
     private Rigidbody2D rb;
     private Vector2 prevPos;
     private Vector2 currVel;
@@ -31,27 +31,33 @@ public class Plant : MonoBehaviour, IInteractable
     }
 
     public void OnLeftPickup() {
-        rb.linearVelocity = Vector2.zero;
-        prevPos = transform.position;
-        currVel = Vector2.zero;
+        if (canInteract) {
+            rb.linearVelocity = Vector2.zero;
+            prevPos = transform.position;
+            currVel = Vector2.zero;
+        }
     }
 
     public void OnLeftDrop() {
-        float clampedX = Mathf.Clamp(currVel.x, -velClamp.x, velClamp.x);
-        float clampedY = Mathf.Clamp(currVel.y, -velClamp.y, velClamp.y);
-        Vector2 clampedVel = new Vector2(clampedX, clampedY);
-        rb.linearVelocity = clampedVel;
+        if(canInteract) {
+            float clampedX = Mathf.Clamp(currVel.x, -velClamp.x, velClamp.x);
+            float clampedY = Mathf.Clamp(currVel.y, -velClamp.y, velClamp.y);
+            Vector2 clampedVel = new Vector2(clampedX, clampedY);
+            rb.linearVelocity = clampedVel;
+        }
     }
 
     public void OnLeftHeld(Vector2 offset) {
-        rb.MovePosition(offset);
-        rb.linearVelocity = Vector2.zero;
-        _currTime += Time.deltaTime;
-        if (_currTime >= _velocityTick) {
-            Vector2 currPos = transform.position;
-            currVel = (currPos - prevPos)/_currTime;
-            prevPos = currPos;
-            _currTime = 0;
+        if(canInteract) {
+            rb.MovePosition(offset);
+            rb.linearVelocity = Vector2.zero;
+            _currTime += Time.deltaTime;
+            if (_currTime >= _velocityTick) {
+                Vector2 currPos = transform.position;
+                currVel = (currPos - prevPos) / _currTime;
+                prevPos = currPos;
+                _currTime = 0;
+            }
         }
     }
 
