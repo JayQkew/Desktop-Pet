@@ -10,11 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe5dc66adb544541808ca5fe2227bbba, type: 3}
-  m_Name: ShortPlantData
+  m_Name: Pumpkin
   m_EditorClassIdentifier: 
-  plantName: ShortPlantData
+  plantName: Pumpkin
   growthTimeSeconds: 900
   planted: {fileID: 21300000, guid: abb15c75361832b4f9deca6db878953b, type: 3}
   growing: {fileID: 21300000, guid: b3e4b16d6020caa469c2ce1771ef5aac, type: 3}
   finished: {fileID: 21300000, guid: 2827b6f659f8e93459922c81f727efb6, type: 3}
   rotten: {fileID: 21300000, guid: 39c532d0c146c1c48851b1493c57818f, type: 3}
+  plantStages:
+  - sprite: {fileID: 21300000, guid: abb15c75361832b4f9deca6db878953b, type: 3}
+    time: 0
+  - sprite: {fileID: 21300000, guid: b3e4b16d6020caa469c2ce1771ef5aac, type: 3}
+    time: 10
+  - sprite: {fileID: 21300000, guid: 2827b6f659f8e93459922c81f727efb6, type: 3}
+    time: 20
+  - sprite: {fileID: 21300000, guid: 39c532d0c146c1c48851b1493c57818f, type: 3}
+    time: 30

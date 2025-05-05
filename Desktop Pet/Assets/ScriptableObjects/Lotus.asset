@@ -10,11 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe5dc66adb544541808ca5fe2227bbba, type: 3}
-  m_Name: LongPlantData
+  m_Name: Lotus
   m_EditorClassIdentifier: 
-  plantName: LongPlantData
+  plantName: Lotus
   growthTimeSeconds: 3600
   planted: {fileID: 21300000, guid: 91891c0defdfc8747828bcbc7574199e, type: 3}
   growing: {fileID: 21300000, guid: 028d0855a5c1c314b902ab2e656ab5e3, type: 3}
   finished: {fileID: 21300000, guid: b6e96031251deb042ad12ed5b9d152a4, type: 3}
   rotten: {fileID: 21300000, guid: a08149ef08de3914392c8ffbeae12597, type: 3}
+  plantStages:
+  - sprite: {fileID: 21300000, guid: 91891c0defdfc8747828bcbc7574199e, type: 3}
+    time: 0
+  - sprite: {fileID: 21300000, guid: 028d0855a5c1c314b902ab2e656ab5e3, type: 3}
+    time: 10
+  - sprite: {fileID: 21300000, guid: b6e96031251deb042ad12ed5b9d152a4, type: 3}
+    time: 20
+  - sprite: {fileID: 21300000, guid: a08149ef08de3914392c8ffbeae12597, type: 3}
+    time: 30

@@ -1593,18 +1593,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1510513707}
-        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
-        m_MethodName: LongPlant
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &394295139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,8 +2509,8 @@ MonoBehaviour:
   forceMult: 10
   itemPrefabs:
   - {fileID: 978910772060042069, guid: cb0454ed1beb9874899c1e4ea5c4eb92, type: 3}
-  - {fileID: 1959154861163083772, guid: d181c22f1fd1f5b4289198b8f0b541c8, type: 3}
-  - {fileID: 1959154861163083772, guid: d181c22f1fd1f5b4289198b8f0b541c8, type: 3}
+  - {fileID: 1959154861163083772, guid: 106cbce8c0335174286b76b00d887a51, type: 3}
+  - {fileID: 1959154861163083772, guid: 8423abab3c415c24e907e72348ebf5f2, type: 3}
   - {fileID: 1959154861163083772, guid: d181c22f1fd1f5b4289198b8f0b541c8, type: 3}
 --- !u!114 &544322879
 MonoBehaviour:
@@ -4060,18 +4048,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1510513707}
-        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
-        m_MethodName: ShortPlant
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6293,17 +6269,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
   m_PrefabInstance: {fileID: 532176292}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1510513707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2948148019794651935, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
-  m_PrefabInstance: {fileID: 532176292}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f368f7de47746258110e429ce4b6453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1511493252
 GameObject:
   m_ObjectHideFlags: 0
@@ -7585,18 +7550,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1510513707}
-        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
-        m_MethodName: MediumPlant
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

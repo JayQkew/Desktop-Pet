@@ -9,5 +9,13 @@ public class PlantData : ScriptableObject
     public Sprite growing;
     public Sprite finished;
     public Sprite rotten;
+    public PlantStage[] plantStages;
     // Add other plant-specific data like money earned.
+}
+
+[System.Serializable]
+public struct PlantStage
+{
+    public Sprite sprite;
+    public float time;
 }

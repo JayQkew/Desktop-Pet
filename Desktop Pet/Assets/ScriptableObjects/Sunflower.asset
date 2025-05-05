@@ -10,11 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe5dc66adb544541808ca5fe2227bbba, type: 3}
-  m_Name: MediumPlantData
+  m_Name: Sunflower
   m_EditorClassIdentifier: 
-  plantName: MediumPlantData
+  plantName: Sunflower
   growthTimeSeconds: 2160
   planted: {fileID: 21300000, guid: 0e7172ce41ed74b46bfde570e24f0200, type: 3}
   growing: {fileID: 21300000, guid: 0e07a35559fafac47977c6e20827b77b, type: 3}
   finished: {fileID: 21300000, guid: f7e2e58e2e5c18a438b0faa82c79f204, type: 3}
   rotten: {fileID: 21300000, guid: a0b7ec409f2f4af4b89637816974b7db, type: 3}
+  plantStages:
+  - sprite: {fileID: 21300000, guid: 0e7172ce41ed74b46bfde570e24f0200, type: 3}
+    time: 0
+  - sprite: {fileID: 21300000, guid: 0e07a35559fafac47977c6e20827b77b, type: 3}
+    time: 10
+  - sprite: {fileID: 21300000, guid: f7e2e58e2e5c18a438b0faa82c79f204, type: 3}
+    time: 20
+  - sprite: {fileID: 21300000, guid: a0b7ec409f2f4af4b89637816974b7db, type: 3}
+    time: 30
