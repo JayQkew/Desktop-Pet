@@ -6,7 +6,7 @@ public class GeneralUX : MonoBehaviour
 {
     public TMP_InputField inputField;
     public TextMeshProUGUI gameButtonText;
-    public Button[] hatButtons;
+    public HatButton[] hatButtons;
     public void ExitGame() => Application.Quit();
 
     public void SetInputField() {
@@ -25,13 +25,17 @@ public class GeneralUX : MonoBehaviour
 
     public void SetHatButtons() {
         GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-        PetGUI[] playerGUI = new PetGUI[player.Length];
+        PetGUI[] petGUI = new PetGUI[player.Length];
+
         for (int i = 0; i < player.Length; i++) {
-            playerGUI[i] = player[i].GetComponentInChildren<PetGUI>();
+            petGUI[i] = player[i].transform.GetChild(0).GetComponentInChildren<PetGUI>();
+            Debug.Log(petGUI[i]);
         }
 
-        foreach (PetGUI p in playerGUI) {
-            // p.
+        foreach (PetGUI gui in petGUI) {
+            foreach (HatButton h in hatButtons) {
+                h.petGUI = gui;
+            }
         }
     }
 }

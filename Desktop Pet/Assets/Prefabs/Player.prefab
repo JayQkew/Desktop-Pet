@@ -827,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9cc45fa80175944be366fb20869d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hatSpriteRenderer: {fileID: 9145775198508779290}
 --- !u!1 &8442576480856728504
 GameObject:
   m_ObjectHideFlags: 0
