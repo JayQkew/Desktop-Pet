@@ -1,8 +1,6 @@
-using System;
 using Mirror;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
 
 public class Player : NetworkBehaviour
 {
