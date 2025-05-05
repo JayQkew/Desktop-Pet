@@ -12,10 +12,12 @@ public class TimerArmController : MonoBehaviour
     public Sprite finished;
     public Sprite rotten;
     private FarmAnimator _farmAnimator;
+    private FarmSatateManager _farmSatateManager;
 
     private void Awake()
     {
         _farmAnimator = GetComponent<FarmAnimator>();
+        _farmSatateManager = GameObject.FindGameObjectWithTag("FarmManager").GetComponent<FarmSatateManager>();
     }
 
     public void SetFarmState(FarmSatateManager.FarmState state)
@@ -53,6 +55,8 @@ public class TimerArmController : MonoBehaviour
                     plantSpriteRenderer.sprite = rotten;
                     Debug.Log(rotten);
                     Debug.Log(plantSpriteRenderer.sprite);
+                    new WaitForSeconds(10f);
+                    _farmSatateManager.Harvest();
                     break;
                 case FarmSatateManager.FarmState.Harvested:
                     plantSpriteRenderer.enabled = false;
