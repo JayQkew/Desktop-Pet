@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LongPlantData
   m_EditorClassIdentifier: 
   plantName: LongPlantData
-  growthTimeSeconds: 3600
+  growthTimeSeconds: 30
   planted: {fileID: 21300000, guid: 91891c0defdfc8747828bcbc7574199e, type: 3}
   growing: {fileID: 21300000, guid: 028d0855a5c1c314b902ab2e656ab5e3, type: 3}
   finished: {fileID: 21300000, guid: b6e96031251deb042ad12ed5b9d152a4, type: 3}
