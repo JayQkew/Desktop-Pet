@@ -23,9 +23,29 @@ public class PetGUI : NetworkBehaviour
         hatAnim.SetInteger("State", (int)state);
     }
     
-    [Command(requiresAuthority = false)]
+    public void ChangeHat(int spriteIndex)
+    {
+        if (isLocalPlayer)
+        {
+            CmdSetHatSprite(spriteIndex);
+        }
+        else
+        {
+            if (spriteIndex >= 0 && (availableHats == null || spriteIndex < availableHats.Length))
+            {
+                _hatSpriteID = spriteIndex;
+            }
+        }
+    }
+    
+    [Command]
     public void CmdSetHatSprite(int spriteIndex)
     {
+        SetHat(spriteIndex);
+    }
+
+    [Server]
+    public void SetHat(int spriteIndex) {
         if (spriteIndex >= 0 && (availableHats == null || spriteIndex < availableHats.Length))
         {
             _hatSpriteID = spriteIndex;
