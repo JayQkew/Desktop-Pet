@@ -1552,6 +1552,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1510513707}
+        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
+        m_MethodName: LongPlant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &394295139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,6 +2643,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531631977}
   m_CullTransparentMesh: 1
+--- !u!1001 &532176292
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 780075825}
+    m_Modifications:
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283394723743755767, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+      propertyPath: m_Name
+      value: Farm Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
 --- !u!1 &544322875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3664,6 +3733,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1464377957}
+  - {fileID: 1510513705}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &803302361
@@ -4053,6 +4123,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1510513707}
+        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
+        m_MethodName: ShortPlant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &924228876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4432,8 +4514,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Freg the Frog
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2a7951699ff04004d840d09acc68fd5b, type: 2}
-  m_sharedMaterial: {fileID: -60485220478933567, guid: 2a7951699ff04004d840d09acc68fd5b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5464,7 +5546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!1 &1471895944
 GameObject:
   m_ObjectHideFlags: 0
@@ -5630,6 +5712,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1510513705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1494043797377928734, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+  m_PrefabInstance: {fileID: 532176292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510513707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2948148019794651935, guid: 9ac06ba7c3d909541b97f34841c95a48, type: 3}
+  m_PrefabInstance: {fileID: 532176292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f368f7de47746258110e429ce4b6453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1511493252
 GameObject:
   m_ObjectHideFlags: 0
@@ -6884,6 +6982,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1510513707}
+        m_TargetAssemblyTypeName: _Scripts.PlantTypeManager, Assembly-CSharp
+        m_MethodName: MediumPlant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10644,7 +10754,7 @@ MonoBehaviour:
   mainStopButton: {fileID: 7103134652276460806}
   mainStopButtonText: {fileID: 7103134653847016242}
   secondaryStopButton: {fileID: 7103134654191625533}
-  statusText: {fileID: 2078944530}
+  statusText: {fileID: 0}
   inputNetworkAddress: {fileID: 7103134654110209773}
   inputPort: {fileID: 2220087315424262099}
 --- !u!61 &7103134653796392964

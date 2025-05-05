@@ -150,11 +150,11 @@ public class FarmSatateManager : MonoBehaviour
             currentTimer = 0f;
 
             // Instantiate Farm Prefab
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("Pet");
+            Debug.Log(player.transform.position);
             if (player != null)
             {
-                currentFarmInstance = Instantiate(farmPrefab, player.transform.position, Quaternion.identity);
-
+                currentFarmInstance = Instantiate(farmPrefab, new Vector2(player.transform.position.x, player.transform.position.y + 0.25f), Quaternion.identity);
                 // Instantiate Timer Arm Prefab and attach it to the farm
                 if (timerArmPrefab != null && currentFarmInstance != null)
                 {
@@ -193,7 +193,7 @@ public class FarmSatateManager : MonoBehaviour
 
     public void Harvest()
     {
-        if (farmState == FarmState.Finished)
+        if (farmState == FarmState.Rotten)
         {
             // Give the player plants
             Debug.Log("Harvested " + plantType);
