@@ -1,15 +1,14 @@
 using System;
 using _Scripts;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class FarmAnimator : MonoBehaviour
 {
     private Animator _farnAnim;
     [SerializeField] private SpriteRenderer _hatSpriteRenderer;
-    [SerializeField] private AnimatorController lotus;
-    [SerializeField] private AnimatorController pumpkin;
-    [SerializeField] private AnimatorController sunflower;
+    [SerializeField] private RuntimeAnimatorController lotus;
+    [SerializeField] private RuntimeAnimatorController pumpkin;
+    [SerializeField] private RuntimeAnimatorController sunflower;
 
 
     private void Awake()
