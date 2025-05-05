@@ -11756,7 +11756,7 @@ MonoBehaviour:
   mainStopButton: {fileID: 7103134652276460806}
   mainStopButtonText: {fileID: 7103134653847016242}
   secondaryStopButton: {fileID: 7103134654191625533}
-  statusText: {fileID: 0}
+  statusText: {fileID: 2078944530}
   inputNetworkAddress: {fileID: 7103134654110209773}
   inputPort: {fileID: 2220087315424262099}
 --- !u!61 &7103134653796392964
