@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1066728915949166532}
   - component: {fileID: 71105036458081460}
   - component: {fileID: -7504618162449664279}
+  - component: {fileID: 1503473129980234460}
+  - component: {fileID: 5826234424036567392}
+  - component: {fileID: 8026876378323031423}
   m_Layer: 0
   m_Name: TimerArm
   m_TagString: Untagged
@@ -124,3 +127,58 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 2
   hasSpawned: 0
+--- !u!95 &1503473129980234460
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649732379555613689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5826234424036567392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649732379555613689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd5f0b0442f46dd96d55cb29799823c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hatSpriteRenderer: {fileID: 0}
+  lotus: {fileID: 9100000, guid: ae8ab71a2af10b040b2895026202483d, type: 2}
+  pumpkin: {fileID: 9100000, guid: 125cd9c239055c64c9fc7d50b16d45d4, type: 2}
+  sunflower: {fileID: 9100000, guid: 4ed2b4cfe19f2fa4585cec41fc0c9b54, type: 2}
+--- !u!114 &8026876378323031423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649732379555613689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 1503473129980234460}

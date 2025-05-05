@@ -24,14 +24,16 @@ public class FarmSatateManager : MonoBehaviour
     private GameObject currentFarmInstance;
     private TimerArmController currentTimerArmController;
 
+    [SerializeField] private FarmAnimator _farmAnimator;
+
     public enum FarmState
     {
-        Empty,
-        Growing,
-        Finished,
+        Empty = 0,
+        Growing = 2,
+        Finished = 3,
         Rotten,
         Harvested,
-        Planted
+        Planted = 1
     }
 
     public enum PlantType

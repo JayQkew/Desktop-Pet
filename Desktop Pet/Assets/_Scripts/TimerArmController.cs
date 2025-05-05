@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TimerArmController : MonoBehaviour
@@ -10,7 +11,13 @@ public class TimerArmController : MonoBehaviour
     public Sprite growing;
     public Sprite finished;
     public Sprite rotten;
-    
+    private FarmAnimator _farmAnimator;
+
+    private void Awake()
+    {
+        _farmAnimator = GetComponent<FarmAnimator>();
+    }
+
     public void SetFarmState(FarmSatateManager.FarmState state)
     {
         if (plantSpriteRenderer != null)
@@ -22,6 +29,7 @@ public class TimerArmController : MonoBehaviour
                     if (timerArm != null) timerArm.gameObject.SetActive(false);
                     break;
                 case FarmSatateManager.FarmState.Planted:
+                    _farmAnimator.SetAnim(0);
                     plantSpriteRenderer.enabled = true;
                     if (timerArm != null) timerArm.gameObject.SetActive(true);
                     plantSpriteRenderer.sprite = planted;
@@ -29,16 +37,19 @@ public class TimerArmController : MonoBehaviour
                     Debug.Log(plantSpriteRenderer.sprite);
                     break;
                 case FarmSatateManager.FarmState.Growing:
+                    _farmAnimator.SetAnim(1);
                     plantSpriteRenderer.sprite = growing;
                     Debug.Log(growing);
                     Debug.Log(plantSpriteRenderer.sprite);
                     break;
                 case FarmSatateManager.FarmState.Finished:
+                    _farmAnimator.SetAnim(2);
                     plantSpriteRenderer.sprite = finished;
                     Debug.Log(finished);
                     Debug.Log(plantSpriteRenderer.sprite);
                     break;
                 case FarmSatateManager.FarmState.Rotten: // Or change sprite
+                    _farmAnimator.SetAnim(3);
                     plantSpriteRenderer.sprite = rotten;
                     Debug.Log(rotten);
                     Debug.Log(plantSpriteRenderer.sprite);
