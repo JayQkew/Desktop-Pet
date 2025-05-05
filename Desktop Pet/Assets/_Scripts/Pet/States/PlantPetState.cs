@@ -23,19 +23,21 @@ public class PlantPetState : PetBaseState
     public override void UpdateState(PetStateManager manager) {
         currTime += Time.deltaTime;
         if (currTime >= 7) {
-            if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Long)
-            {
-                GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantLong();
-            }
-            else if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Medium)
-            {
-                GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantMedium();
-            }
-            else if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Short)
-            {
-                GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantShort();
-            }
-            pet.CmdDestroyItem();
+            // if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Long)
+            // {
+            //     GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantLong();
+            // }
+            // else if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Medium)
+            // {
+            //     GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantMedium();
+            // }
+            // else if (GameObject.FindWithTag("FarmManager").GetComponent<PlantTypeManager>().plantType == PlantTypeManager.PlantType.Short)
+            // {
+            //     GameObject.FindWithTag("FarmManager").GetComponent<FarmSatateManager>().PlantShort();
+            // }
+            // pet.CmdDestroyItem();
+            plant.planted = true;
+            pet.targetFood = null;
             manager.CmdSwitchState(PetState.Idle);
         }
     }

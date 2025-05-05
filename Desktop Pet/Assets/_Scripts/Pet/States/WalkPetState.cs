@@ -44,11 +44,9 @@ public class WalkPetState : PetBaseState
 
             if (targetItem) {
                 if (targetItem.GetComponent<Food>() != null) {
-                    Debug.Log("Here Eat");
                     newState = PetState.Eat;
                 }
                 else if (targetItem.GetComponent<Plant>() != null) {
-                    Debug.Log("Here Plant");
                     newState = PetState.Plant;
                 }
             }

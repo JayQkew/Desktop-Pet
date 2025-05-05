@@ -1,7 +1,15 @@
+using Mirror;
 using UnityEngine;
 
-public class Plant : MonoBehaviour, IInteractable
+public class Plant : NetworkBehaviour, IInteractable
 {
+    [Header("Plant Data")]
+    public bool planted;
+    [SerializeField] private PlantData plantData;
+    [SyncVar][SerializeField] private float currTime;
+    private SpriteRenderer sr;
+    
+    [Header("Interaction")]
     public GameObject petTarget;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask petLayer;
@@ -10,16 +18,17 @@ public class Plant : MonoBehaviour, IInteractable
     private Rigidbody2D rb;
     private Vector2 prevPos;
     private Vector2 currVel;
-
-    private float _velocityTick = 0.01f;
-    private float _currTime = 0;
+    private readonly float _velocityTick = 0.01f;
+    private float _velCurrTime = 0;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     
     private void Update() {
-        SeedRadius();
+        if (planted) CmdGrowPlant();
+        else SeedRadius();
     }
 
     private void SeedRadius() {
@@ -29,7 +38,20 @@ public class Plant : MonoBehaviour, IInteractable
             petTarget.GetComponent<Pet>().Food(gameObject);
         }
     }
-
+    
+    [Server]
+    private void GrowPlant() {
+        if(currTime > plantData.plantStages[3].time + 1) return;
+        currTime += Time.deltaTime;
+        
+        if (currTime >= plantData.plantStages[3].time) sr.sprite = plantData.plantStages[3].sprite;
+        else if (currTime >= plantData.plantStages[2].time) sr.sprite = plantData.plantStages[2].sprite;
+        else if (currTime >= plantData.plantStages[1].time) sr.sprite = plantData.plantStages[1].sprite;
+        else sr.sprite = plantData.plantStages[0].sprite;
+    }
+    
+    [Command(requiresAuthority = false)]
+    private void CmdGrowPlant() => GrowPlant();
     public void OnLeftPickup() {
         if (canInteract) {
             rb.linearVelocity = Vector2.zero;
@@ -51,12 +73,12 @@ public class Plant : MonoBehaviour, IInteractable
         if(canInteract) {
             rb.MovePosition(offset);
             rb.linearVelocity = Vector2.zero;
-            _currTime += Time.deltaTime;
-            if (_currTime >= _velocityTick) {
+            _velCurrTime += Time.deltaTime;
+            if (_velCurrTime >= _velocityTick) {
                 Vector2 currPos = transform.position;
-                currVel = (currPos - prevPos) / _currTime;
+                currVel = (currPos - prevPos) / _velCurrTime;
                 prevPos = currPos;
-                _currTime = 0;
+                _velCurrTime = 0;
             }
         }
     }

@@ -7,7 +7,7 @@ public class Pet : NetworkBehaviour, IInteractable
 {
     private PetStateManager _petStateManager;
     private Rigidbody2D _rb;
-    private SpriteRenderer _sr;
+    private Transform _guiTransform;
 
     [Header("Poop")]
     [SerializeField] private GameObject poopPrefab;
@@ -23,7 +23,7 @@ public class Pet : NetworkBehaviour, IInteractable
     private void Awake() {
         _petStateManager = GetComponent<PetStateManager>();
         _rb = GetComponent<Rigidbody2D>();
-        _sr = GetComponentInChildren<SpriteRenderer>();
+        _guiTransform = transform.GetChild(0);
         poopCurrTime = poopTimer;
     }
 
@@ -67,7 +67,7 @@ public class Pet : NetworkBehaviour, IInteractable
 
     [ClientRpc]
     private void RpcFlipSprite(bool flip) {
-        _sr.flipX = flip;
+        _guiTransform.localScale = !flip ? new Vector3(1f, 1f, 1f) : new Vector3(-1f, 1f, 1f);
     }
     public void OnLeftPickup() {
         _petStateManager.CmdSwitchState(PetState.Drag);
