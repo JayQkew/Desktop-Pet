@@ -18,13 +18,13 @@ public class EatPetState : PetBaseState
         pet.foodEaten += Time.deltaTime;
         
         if(food.foodAmount <= 0) {
-            pet.CmdDestroyItem();
-            manager.CmdSwitchState(PetState.Idle);
+            pet.DestroyItem();
+            manager.SwitchState(PetState.Idle);
         }
         
         Vector2 foodPos = food.transform.position;
         Vector2 foodPrevPos = manager.walkState.targetPosition;
-        if(Vector2.Distance(foodPos, foodPrevPos) > 0.1f) manager.CmdSwitchState(PetState.Walk);
+        if(Vector2.Distance(foodPos, foodPrevPos) > 0.1f) manager.SwitchState(PetState.Walk);
     }
 
     public override void ExitState(PetStateManager manager) {

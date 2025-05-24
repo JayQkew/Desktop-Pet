@@ -2,20 +2,14 @@ using Mirror;
 using UnityEngine;
 using TMPro;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
-    [SyncVar(hook = nameof(OnNameChanged))]
     public string playerName;
 
     [Space(10)]
     private GameObject _pet;
-
-    public Textbox textbox;
     private InputHandler _inputHandler;
 
-    public TMP_InputField inputField;
-    private bool _methodSubscribed;
-    public TextMeshProUGUI gameButtonText;
     [SerializeField] private GameObject heldObject;
     private IInteractable _interactable;
     [SerializeField] private LayerMask interactableLayer;
@@ -25,7 +19,6 @@ public class Player : NetworkBehaviour
     private void Awake() {
         _pet = transform.GetChild(0).gameObject;
         _inputHandler = GetComponent<InputHandler>();
-        textbox = GetComponent<Textbox>();
     }
 
     private void Start() {
@@ -36,53 +29,6 @@ public class Player : NetworkBehaviour
         _inputHandler.onRightDown.AddListener(RightDown);
         _inputHandler.onRightHold.AddListener(RightHold);
         _inputHandler.onRightUp.AddListener(RightUp);
-    }
-
-    private void Update() {
-        if (inputField != null && !_methodSubscribed) {
-            inputField.onValueChanged.AddListener(OnInputChange);
-            _methodSubscribed = true;
-        }
-    }
-
-    public override void OnStartClient() {
-        base.OnStartClient();
-        if (isServer) textbox.ServerDisplayYou(playerName);
-        else if (isLocalPlayer) textbox.DisplayYou(playerName);
-        else textbox.DisplayText("");
-    }
-
-    private void OnInputChange(string newName) {
-        if (isLocalPlayer) {
-            if (newName.Length > 4) {
-                inputField.text = newName.Substring(0, 4);
-                newName = inputField.text;
-            }
-
-            CmdUpdatePlayerName(newName);
-        }
-    }
-
-    [Command]
-    private void CmdUpdatePlayerName(string newName) {
-        if (newName.Length <= 4) {
-            playerName = newName;
-            gameButtonText.text = $"{playerName} the Frog";
-        }
-    }
-
-    private void OnNameChanged(string oldValue, string newValue) {
-        if (gameButtonText != null) {
-            gameButtonText.text = $"{playerName} the Frog";
-        }
-
-        UpdateNameDisplay();
-    }
-
-    private void UpdateNameDisplay() {
-        if (isServer) textbox.ServerDisplayYou(playerName);
-        else if (isLocalPlayer) textbox.DisplayYou(playerName);
-        else textbox.DisplayText("");
     }
 
     private void LeftDown() {

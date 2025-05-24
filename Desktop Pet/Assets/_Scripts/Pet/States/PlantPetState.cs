@@ -38,7 +38,7 @@ public class PlantPetState : PetBaseState
             // pet.CmdDestroyItem();
             plant.planted = true;
             pet.targetFood = null;
-            manager.CmdSwitchState(PetState.Idle);
+            manager.SwitchState(PetState.Idle);
         }
     }
 

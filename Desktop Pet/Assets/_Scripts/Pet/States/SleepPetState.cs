@@ -17,7 +17,7 @@ public class SleepPetState : PetBaseState
             //choose a random state between SLEEP and WALK
             float rand = Random.Range(0f, 1f);
             PetState nextState = rand >= 0.5f ? PetState.Walk : PetState.Idle;
-            manager.CmdSwitchState(nextState);
+            manager.SwitchState(nextState);
         }
     }
 

@@ -17,5 +17,5 @@ public class PetPetState : PetBaseState
     public override void ExitState(PetStateManager manager) {
     }
 
-    public void OnDrop(PetStateManager manager) => manager.CmdSwitchState(currTime >= minPetTime ? PetState.Sleep : PetState.Idle);
+    public void OnDrop(PetStateManager manager) => manager.SwitchState(currTime >= minPetTime ? PetState.Sleep : PetState.Idle);
 }

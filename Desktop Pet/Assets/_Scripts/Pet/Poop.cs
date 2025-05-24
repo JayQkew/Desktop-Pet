@@ -2,14 +2,13 @@ using Mirror;
 using UnityEngine;
 
 [SelectionBase]
-public class Poop : NetworkBehaviour, IInteractable
+public class Poop : MonoBehaviour, IInteractable
 {
-    [Command(requiresAuthority = false)]
-    private void CmdDestroyPoop() {
-        NetworkServer.Destroy(gameObject);
+    private void DestroyPoop() {
+        Destroy(gameObject);
     }
     
-    public void OnLeftPickup() => CmdDestroyPoop();
+    public void OnLeftPickup() => DestroyPoop();
 
     public void OnLeftDrop() {
     }

@@ -1,12 +1,12 @@
 using Mirror;
 using UnityEngine;
 
-public class Plant : NetworkBehaviour, IInteractable
+public class Plant : MonoBehaviour, IInteractable
 {
     [Header("Plant Data")]
     public bool planted;
     [SerializeField] private PlantData plantData;
-    [SyncVar][SerializeField] private float currTime;
+    [SerializeField] private float currTime;
     private SpriteRenderer sr;
     
     [Header("Interaction")]
@@ -27,7 +27,7 @@ public class Plant : NetworkBehaviour, IInteractable
     }
     
     private void Update() {
-        if (planted) CmdGrowPlant();
+        if (planted) GrowPlant();
         else SeedRadius();
     }
 
@@ -39,7 +39,6 @@ public class Plant : NetworkBehaviour, IInteractable
         }
     }
     
-    [Server]
     private void GrowPlant() {
         if(currTime > plantData.plantStages[3].time + 1) return;
         currTime += Time.deltaTime;
@@ -49,9 +48,7 @@ public class Plant : NetworkBehaviour, IInteractable
         else if (currTime >= plantData.plantStages[1].time) sr.sprite = plantData.plantStages[1].sprite;
         else sr.sprite = plantData.plantStages[0].sprite;
     }
-    
-    [Command(requiresAuthority = false)]
-    private void CmdGrowPlant() => GrowPlant();
+
     public void OnLeftPickup() {
         if (canInteract) {
             rb.linearVelocity = Vector2.zero;

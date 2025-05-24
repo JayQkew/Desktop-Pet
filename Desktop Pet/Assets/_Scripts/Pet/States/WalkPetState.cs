@@ -37,7 +37,7 @@ public class WalkPetState : PetBaseState
 
         Vector2 dir = targetPosition - (Vector2)manager.transform.position;
 
-        pet.CmdFlipSprite(dir.x != 0 ? dir.x < 0 : sr.flipX);
+        pet.FlipSprite(dir.x != 0 ? dir.x < 0 : sr.flipX);
 
         if (Mathf.Approximately(manager.transform.position.x, targetPosition.x)) {
             PetState newState = PetState.Idle;
@@ -51,7 +51,7 @@ public class WalkPetState : PetBaseState
                 }
             }
             
-            manager.CmdSwitchState(newState);
+            manager.SwitchState(newState);
         }
     }
 

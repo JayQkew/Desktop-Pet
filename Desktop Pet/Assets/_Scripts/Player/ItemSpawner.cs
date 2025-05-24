@@ -1,14 +1,13 @@
 using Mirror;
 using UnityEngine;
 
-public class ItemSpawner : NetworkBehaviour
+public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private Vector2 angleLimits;
     [SerializeField] private float forceMult;
     
     [SerializeField] private GameObject[] itemPrefabs;
 
-    [Server]
     private void SpawnItem(int index) {
         float angle = Random.Range(angleLimits.x, angleLimits.y);
         float rad = angle * Mathf.Deg2Rad;
@@ -20,10 +19,8 @@ public class ItemSpawner : NetworkBehaviour
         rb.AddForce(dir * forceMult, ForceMode2D.Impulse);
     }
 
-    [Command(requiresAuthority = false)]
-    private void CmdSpawnItem(int item) => SpawnItem(item);
     
     public void BtnSpawnItem(int item) { 
-        CmdSpawnItem(item);
+        SpawnItem(item);
     }
 }
